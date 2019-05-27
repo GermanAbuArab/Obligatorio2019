@@ -1,3 +1,5 @@
+package entidades;
+
 public class Athlete {
 
     private long id;
