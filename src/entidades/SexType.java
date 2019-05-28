@@ -1,7 +1,6 @@
 package entidades;
 
-public enum SexType {
+public enum  SexType {
 
-    MALE(), FEMALE()
-
+ MALE(),FEMALE()
 }
