@@ -7,26 +7,17 @@ public class Athlete {
     private SexType sex;
     private float height;
     private float weight;
+    private Team team;
+    private NationalOlympicCommittee NatOlimpic;
 
-
-    public void setId(long id) {
+    public Athlete(long id, String name, SexType sex, float height, float weight, Team team, NationalOlympicCommittee natOlimpic) {
         this.id = id;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setSex(SexType sex) {
         this.sex = sex;
-    }
-
-    public void setHeight(float height) {
         this.height = height;
-    }
-
-    public void setWeight(float weight) {
         this.weight = weight;
+        this.team = team;
+        NatOlimpic = natOlimpic;
     }
 
     public long getId() {
@@ -49,11 +40,39 @@ public class Athlete {
         return weight;
     }
 
-    public Athlete(long id, String name, SexType sex, float height, float weight) {
+    public Team getTeam() {
+        return team;
+    }
+
+    public NationalOlympicCommittee getNatOlimpic() {
+        return NatOlimpic;
+    }
+
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSex(SexType sex) {
         this.sex = sex;
+    }
+
+    public void setHeight(float height) {
         this.height = height;
+    }
+
+    public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public void setNatOlimpic(NationalOlympicCommittee natOlimpic) {
+        NatOlimpic = natOlimpic;
     }
 }
