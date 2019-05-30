@@ -2,13 +2,13 @@ package entidades;
 
 public class AthleteOlympicParticipation {
     private MedalType medal;
-    private Athlete atlteta;
+    private Athlete atleta;
     private Event evento;
     private OlympicGame juegoOlimpico;
 
-    public AthleteOlympicParticipation(MedalType medal, Athlete atlteta, Event evento, OlympicGame juegoOlimpico) {
+    public AthleteOlympicParticipation(MedalType medal, Athlete atleta, Event evento, OlympicGame juegoOlimpico) {
         this.medal = medal;
-        this.atlteta = atlteta;
+        this.atleta = atleta;
         this.evento = evento;
         this.juegoOlimpico = juegoOlimpico;
     }
@@ -18,7 +18,7 @@ public class AthleteOlympicParticipation {
     }
 
     public Athlete getAtlteta() {
-        return atlteta;
+        return atleta;
     }
 
     public Event getEvento() {
@@ -34,7 +34,7 @@ public class AthleteOlympicParticipation {
     }
 
     public void setAtlteta(Athlete atlteta) {
-        this.atlteta = atlteta;
+        this.atleta = atlteta;
     }
 
     public void setEvento(Event evento) {
