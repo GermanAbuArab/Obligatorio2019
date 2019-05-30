@@ -1,5 +1,5 @@
 package entidades;
 
 public enum  SexType {
- M(),F()
+ MALE,FEMALE
 }

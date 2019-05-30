@@ -11,6 +11,17 @@ public class AthleteOlympicParticipation {
         this.atleta = atleta;
         this.evento = evento;
         this.juegoOlimpico = juegoOlimpico;
+
+        if (medal == null) {
+        } else if (medal.equals(MedalType.GOLD)) {
+            atleta.sumarMedallaOro();
+        } else if (medal.equals(MedalType.SILVER)) {
+            atleta.sumarMedallaPlata();
+        } else if (medal.equals(MedalType.BRONZE)) {
+            atleta.sumarMedallaBronce();
+        }
+
+
     }
 
     public MedalType getMedal() {

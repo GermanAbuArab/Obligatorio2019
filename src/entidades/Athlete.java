@@ -9,6 +9,7 @@ public class Athlete {
     private float weight;
     private Team team;
     private NationalOlympicCommittee NatOlimpic;
+    private int[] medallas;
 
     public Athlete(long id, String name, SexType sex, float height, float weight, Team team, NationalOlympicCommittee natOlimpic) {
         this.id = id;
@@ -18,7 +19,18 @@ public class Athlete {
         this.weight = weight;
         this.team = team;
         NatOlimpic = natOlimpic;
+
+        medallas = new int[3];
+        medallas[0]=0;
+        medallas[1]=0;
+        medallas[2]=0;
+
     }
+
+    public void sumarMedallaOro(){medallas[0]=medallas[0]+1;}
+    public void sumarMedallaPlata(){medallas[1]=medallas[1]+1;}
+    public void sumarMedallaBronce(){medallas[2]=medallas[2]+1;}
+
 
     public long getId() {
         return id;
