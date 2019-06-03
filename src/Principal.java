@@ -45,7 +45,7 @@ public class Principal {
                 } else {
                     String noc1 = (values[0]);
                     String region = (values[1]);
-                    String notas = (values[2]);
+                    NationalOlympicCommittee pais = new NationalOlympicCommittee(noc1,region);
                     //agregarlo a un tad
                 }
             }
@@ -74,7 +74,7 @@ public class Principal {
                 } else {
 
 
-                    long id = Long.valueOf(values[0]);
+                    long id = Long.valueOf(values[0]); // hay un tema  no podemos usar el long value of porque hay "" y las toma como parte del string
                     String name = values[1];
                     SexType sex;
                     if (values[2].equals("M")) {
