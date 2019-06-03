@@ -5,20 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Principal {
     // aca ponemos las consultas que nos pide hacer
-    // to do generar todos los atletas y guardarlos en un
-
-    List<List<String>> records = new ArrayList<>();
+    // ToDo generar todos los atletas y guardarlos en un
+ //  hay que cambiar esto a otra clase
+    // Tenemos problemas con el main y no se solucinoarlo aaaaaah aiudaaaaa, se lo pregunto a rolo tech
+      List<List<String>> records = new ArrayList<>();
     private BufferedReader br;
     private BufferedReader br2;
 
     // ToDo nocRegister
 
    //  public static void main (String[] args)
+
 
 
 
@@ -104,14 +105,19 @@ public class Principal {
                 String sport = values[12];
                 String event = values[13];
                 MedalType medal;
-                if (values[14].equals("NA")) {
-                    medal = null;
-                } else if (values[14].equals("Bronze")) {
-                    medal = MedalType.BRONZE;
-                } else if (values[14].equals("Silver")) {
-                    medal = MedalType.SILVER;
-                } else if (values[14].equals("Gold")) {
-                    medal = MedalType.GOLD;
+                switch (values[14]) {
+                    case "NA":
+                        medal = null;
+                        break;
+                    case "Bronze":
+                        medal = MedalType.BRONZE;
+                        break;
+                    case "Silver":
+                        medal = MedalType.SILVER;
+                        break;
+                    case "Gold":
+                        medal = MedalType.GOLD;
+                        break;
                 }
 
 
