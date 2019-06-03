@@ -13,12 +13,15 @@ public class Principal {
     // to do generar todos los atletas y guardarlos en un
 
     List<List<String>> records = new ArrayList<>();
-    BufferedReader br;
-    BufferedReader br2;
+    private BufferedReader br;
+    private BufferedReader br2;
 
     // ToDo nocRegister
 
-// main 
+   //  public static void main (String[] args)
+
+
+
     {
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
@@ -41,7 +44,10 @@ public class Principal {
             if (primeralinea2 == 1) {
                 primeralinea2 = 0;
             } else {
-                String = (long) Integer.valueOf(values[0]);
+                String NOC = (values[0]);
+                String region = (values[1]);
+                String notas = (values[2]);
+                //agregarlo a un tad
             }
         }
 
