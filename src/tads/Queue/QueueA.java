@@ -1,3 +1,5 @@
+package tads.Queue;
+
 public class QueueA<T> implements MyQueue<T> {
     private ListaEnlazada<T> lista;
 

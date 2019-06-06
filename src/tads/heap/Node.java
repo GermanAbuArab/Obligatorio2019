@@ -1,3 +1,5 @@
+package tads.heap;
+
 public class Node<K extends Comparable, T> {
     private K key; //atributo extra
     private T data;

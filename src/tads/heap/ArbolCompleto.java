@@ -1,3 +1,5 @@
+import tads.heap.Node;
+
 import java.util.ArrayList;
 
 public class ArbolCompleto<K extends Comparable, T> {

@@ -1,4 +1,6 @@
-public class QueueArray<T> implements MyQueue<T>{
+package tads.Queue;
+
+public class QueueArray<T> implements MyQueue<T> {
     private T[] queue;
     private int posicion;
     private int tam;

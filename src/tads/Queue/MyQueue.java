@@ -1,3 +1,5 @@
+package tads.Queue;
+
 public interface MyQueue<T>  {
 
     void enqueue(T element);

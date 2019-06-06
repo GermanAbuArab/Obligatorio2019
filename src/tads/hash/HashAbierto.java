@@ -1,7 +1,6 @@
-import Extras.ElementoNoExistente;
-import Extras.ElementoYaExistente;
-import Extras.ListaEnlazada;
-import Extras.Nodo;
+package tads.hash;
+
+import tads.hash.Extras.*;
 
 import static java.lang.Math.abs;
 

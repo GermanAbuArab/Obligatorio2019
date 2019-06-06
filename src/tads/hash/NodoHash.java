@@ -1,3 +1,5 @@
+package tads.hash;
+
 public class NodoHash<K,T> {
     private K valor;
     private T clave;

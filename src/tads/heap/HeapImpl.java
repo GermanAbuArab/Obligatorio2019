@@ -1,3 +1,5 @@
+package tads.heap;
+
 public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
     private NodeHeap[] heap; //maximo
     private int lastPosition;

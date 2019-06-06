@@ -1,3 +1,5 @@
+package tads.hash;
+
 import static java.lang.Math.abs;
 
 public class Hash<K, T> implements HashTable<K, T> {

@@ -1,4 +1,4 @@
-
+package tads.Queue;
 
 public interface Lista<t> {
     public void add(t objeto);
