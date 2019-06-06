@@ -1,7 +1,5 @@
 package entidades;
 
-import tads.linkedlist.ListaEnlazada;
-
 public class NationalOlympicCommittee {
     private String name ;
     private String region ;
