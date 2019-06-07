@@ -21,15 +21,44 @@ public class Athlete {
         NatOlimpic = natOlimpic;
 
         medallas = new int[3];
-        medallas[0]=0;
-        medallas[1]=0;
-        medallas[2]=0;
+        medallas[0] = 0;
+        medallas[1] = 0;
+        medallas[2] = 0;
 
     }
 
-    public void sumarMedallaOro(){medallas[0]=medallas[0]+1;}
-    public void sumarMedallaPlata(){medallas[1]=medallas[1]+1;}
-    public void sumarMedallaBronce(){medallas[2]=medallas[2]+1;}
+    public void sumarMedallaOro() {
+        medallas[0] = medallas[0] + 1;
+    }
+
+    public void sumarMedallaPlata() {
+        medallas[1] = medallas[1] + 1;
+    }
+
+    public void sumarMedallaBronce() {
+        medallas[2] = medallas[2] + 1;
+    }
+
+    public int getMedallas() {
+        int cantmedallas =medallas[0]+medallas[1]+medallas[2];
+        return cantmedallas;
+    }
+
+    public int getMedallasOro() {
+        int cantmedallas =medallas[0];
+        return cantmedallas;
+    }
+
+    public int getMedallasPlata() {
+        int cantmedallas =medallas[1];
+        return cantmedallas;
+    }
+
+    public int getMedallasBronce() {
+        int cantmedallas =medallas[2];
+        return cantmedallas;
+    }
+
 
 
     public long getId() {
