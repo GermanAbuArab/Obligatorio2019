@@ -17,6 +17,14 @@ public class Repositorio {
     static Heap<Integer, RegionPorMedalla> medallasBronceReg;
     static Heap<Integer, RegionPorMedalla> medallasReg;
 
+    public static HashAbierto<Athlete, Integer> getHashAtleta() {
+        return hashAtleta;
+    }
+
+    public static void setHashAtleta(HashAbierto<Athlete, Integer> hashAtleta) {
+        Repositorio.hashAtleta = hashAtleta;
+    }
+
     public static Hash<NationalOlympicCommittee, String> getHashNOC() {
         return hashNOC;
     }
