@@ -12,18 +12,12 @@ public class CargaDeDatos {
     static BufferedReader br;
     static BufferedReader br2;
 
-    // ToDo nocRegister
-
     public static void main(String[] args) {
-
-
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
         Hash<NationalOlympicCommittee, String> nocs = new Hash<>(330);
         String line2 = null;
         int primeraLinea2 = 1;
@@ -56,8 +50,7 @@ public class CargaDeDatos {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-            long x=0;
+        long x = 0;
         String line = null;
         int primeraLinea = 1;
         HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
@@ -68,12 +61,9 @@ public class CargaDeDatos {
                 e.printStackTrace();
             }
             String[] values = line.split(",");
-
             if (primeraLinea == 1) {
                 primeraLinea = 0;
             } else {
-
-
                 long id = Long.valueOf(values[0].substring(1, (int) (values[0].length() - 1))); // hay un tema  no podemos usar el long value of porque hay "" y las toma como parte del string
                 String name = values[1].substring(1, ((int) (values[1].length() - 1)));
                 SexType sex = null;
@@ -133,7 +123,7 @@ public class CargaDeDatos {
                         break;
                 }
 
-                //
+
                 NationalOlympicCommittee temp = Repositorio.getHashNOC().getValor(Noc);
                 Athlete atleta = null;
 
@@ -141,9 +131,13 @@ public class CargaDeDatos {
                     atleta = hashAtleta.getValor((int) id);
                 } else {
                     atleta = new Athlete(id, name, sex, heigth, weigth, team, temp);
+                    try {
+                        hashAtleta.insertar((int) id,atleta);
+                    } catch (ElementoYaExistenteException e) {
+                        e.printStackTrace();
+                    }
 
                 }
-
 
                 if (medal != null) {
                     if (medal.equals(MedalType.BRONZE)) {
@@ -157,13 +151,9 @@ public class CargaDeDatos {
                         temp.sumarMedallaOro();
                     }
                 }
-
-
                 //  Athlete atleta = new Athlete(id, name, sex, heigth, weigth, team, no)
             }
         }
         Repositorio.setHashAtleta(hashAtleta);
-
-
     }
 }
