@@ -39,6 +39,15 @@ public class HashAbierto<K, T> implements HashTable<K, T> {
             return hash[pos].existeElemento(clave);
         }
     }
+    public K get(T clave) {
+        int pos = clave.hashCode();
+        pos = abs(pos % tamanio);
+        if(hash[pos]==null){
+            return null;
+        }else{
+            return (K) hash[pos].getElemento(clave);
+        }
+    }
 
     public void borrar(T clave) throws NoExisteElemento {
         int pos = clave.hashCode();

@@ -178,4 +178,44 @@ public class Hash<K, T> implements HashTable<K, T> {
             throw new NoExisteElemento();
         }
     }
+
+    public K getValor(T clave) {
+        K temp =null;
+        int pos = clave.hashCode();
+        pos = abs(pos % (int) tamanio);
+        int continuar;
+        int colisiones = 0;
+        int vuelta = 1;
+        if (hash[pos] == null) {
+            return temp;
+        } else {
+            continuar = 1;
+        }
+        while (continuar == 1) {
+            if (hash[pos].getClave().equals(clave)) {
+                if (hash[pos].isRemoved()) {
+                    temp=null;
+                    continuar = 0;
+                } else {
+                    temp=hash[pos].getValor();
+                    continuar = 0;
+                }
+            } else {
+                colisiones = colisiones + 1;
+                pos = pos + getNextPosition(colisiones);
+                if (pos > tamanio - 1) {
+                    if (vuelta == 0) {
+                        continuar = 0;
+                    }
+                    pos = pos - (int) tamanio;
+                    vuelta = 0;
+                }
+                if (hash[pos] == null) {
+                    temp=null;
+                    continuar = 0;
+                }
+            }
+        }
+        return temp;
+    }
 }

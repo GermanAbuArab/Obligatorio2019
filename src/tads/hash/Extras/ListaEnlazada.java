@@ -35,7 +35,7 @@ public class ListaEnlazada<t, k> {
 
 
     public void remove(k key) throws ElementoNoExistente {
-        if(primero==null){
+        if (primero == null) {
             throw new ElementoNoExistente();
         }
         Nodo<t, k> temp = primero;
@@ -51,7 +51,7 @@ public class ListaEnlazada<t, k> {
         } else {
             while (i < cantElementos) {
                 if (temp.getSiguiente().getKey().equals(key)) {
-                    i=cantElementos+1;
+                    i = cantElementos + 1;
                     tempAnt = temp;
                     temp = temp.getSiguiente();
                     if (temp.getSiguiente() != null) {
@@ -62,7 +62,7 @@ public class ListaEnlazada<t, k> {
                     }
                 } else {
                     i++;
-                    temp=temp.getSiguiente();
+                    temp = temp.getSiguiente();
                 }
             }
             if (i == cantElementos) {
@@ -85,6 +85,19 @@ public class ListaEnlazada<t, k> {
 
         }
         return existe;
+    }
+
+    public t getElemento(k key) {
+        Nodo<t, k> temp = primero;
+        t valor = null;
+        for (int i = 0; i < cantElementos; i++) {
+            if ((temp.getKey()).equals(key)) {
+                valor = temp.getValue();
+                break;
+            }
+            temp = temp.getSiguiente();
+        }
+        return valor;
     }
 
 }

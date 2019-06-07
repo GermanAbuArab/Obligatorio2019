@@ -61,7 +61,7 @@ public  class CargaDeDatos {
 
         String line = null;
         int primeraLinea = 1;
-        HashAbierto<Athlete,Integer> = new HashAbierto<>(75000);
+        HashAbierto<Athlete,Integer> hashAtleta = new HashAbierto<>(75000);
         while (true) {
             try {
                 if ((line = br.readLine()) == null) break;
@@ -116,6 +116,10 @@ public  class CargaDeDatos {
                         medal = MedalType.GOLD;
                         break;
                 }
+
+                //
+                NationalOlympicCommittee temp = Repositorio.getHashNOC().
+                Athlete atleta = new Athlete(id,name,sex,heigth,weigth,team,noc)
 
 
 
