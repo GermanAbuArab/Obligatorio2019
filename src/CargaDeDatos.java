@@ -64,7 +64,12 @@ public class CargaDeDatos {
             if (primeraLinea == 1) {
                 primeraLinea = 0;
             } else {
-                long id = Long.valueOf(values[0].substring(1, (int) (values[0].length() - 1))); // hay un tema  no podemos usar el long value of porque hay "" y las toma como parte del string
+                long id;
+                if (values[0].length() == 1) {
+                    id= Long.valueOf("" + values[0].charAt(0));
+                }else{
+                    id = Long.valueOf(values[0].substring(1, (int) (values[0].length() - 1)));
+                }
                 String name = values[1].substring(1, ((int) (values[1].length() - 1)));
                 SexType sex = null;
                 if (values[2].substring(1, ((int) (values[2].length() - 1))).equals("M")) {
