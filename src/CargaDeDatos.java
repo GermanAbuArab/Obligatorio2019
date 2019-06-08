@@ -43,6 +43,7 @@ public class CargaDeDatos {
             }
         }
         Repositorio.setHashNOC(nocs);
+        NationalOlympicCommittee temp1 = Repositorio.getHashNOC().getValor("SGP");
 
 
         try {
@@ -55,6 +56,9 @@ public class CargaDeDatos {
         int primeraLinea = 1;
         HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
         while (true) {
+            if(x==67723){
+                System.out.println("hola");
+            }
             try {
                 if ((line = br.readLine()) == null) break;
             } catch (IOException e) {
@@ -68,13 +72,13 @@ public class CargaDeDatos {
                 if (values[0].length() == 1) {
                     id= Long.valueOf("" + values[0].charAt(0));
                 }else{
-                    id = Long.valueOf(values[0].substring(1, (int) (values[0].length() - 1)));
+                    id = Long.valueOf(values[0].substring(0, (int) (values[0].length())));
                 }
-                String name = values[1].substring(1, ((int) (values[1].length() - 1)));
+                String name = values[1].substring(0, ((int) (values[1].length())));
                 SexType sex = null;
-                if (values[2].substring(1, ((int) (values[2].length() - 1))).equals("M")) {
+                if ((""+values[2].charAt(0)).equals("M")) {
                     sex = SexType.MALE;
-                } else if (values[2].substring(1, ((int) (values[2].length() - 1))).equals("F")) {
+                } else if ((""+values[2].charAt(0)).equals("F")) {
                     sex = SexType.FEMALE;
                 }
 //                int age;
@@ -96,25 +100,25 @@ public class CargaDeDatos {
                     weigth = Float.valueOf(values[5]);
                 }
 
-                Team team = new Team(values[6].substring(1, ((int) (values[6].length() - 1))));
-                String Noc = values[7].substring(1, ((int) (values[7].length() - 1)));
-                String games = values[8].substring(1, ((int) (values[8].length() - 1)));
+                Team team = new Team(values[6].substring(0, ((int) (values[6].length()))));
+                String Noc = values[7].substring(0, ((int) (values[7].length())));
+                String games = values[8].substring(0, ((int) (values[8].length())));
 
                 System.out.println(x);
                 x++;
                 int year = Integer.valueOf(values[9]);
                 SeasonType season;
-                if (values[10].substring(1, ((int) (values[10].length() - 1))).equals("Summer")) {
+                if (values[10].substring(0, ((int) (values[10].length()))).equals("Summer")) {
                     season = SeasonType.SUMMER;
-                } else if (values[10].substring(1, ((int) (values[10].length() - 1))).equals("Winter")) {
+                } else if (values[10].substring(0, ((int) (values[10].length()))).equals("Winter")) {
                     season = SeasonType.WINTER;
                 }
-                String city = values[11].substring(1, ((int) (values[11].length() - 1)));
-                String sport = values[12].substring(1, ((int) (values[12].length() - 1)));
-                String event = values[13].substring(1, ((int) (values[13].length() - 1)));
+                String city = values[11].substring(0, ((int) (values[11].length())));
+                String sport = values[12].substring(0, ((int) (values[12].length())));
+                String event = values[13].substring(0, ((int) (values[13].length())));
                 MedalType medal = null;
-                switch (values[14].substring(1, ((int) (values[14].length() - 1)))) {
-                    case "":
+                switch (values[14].substring(0, ((int) (values[14].length())))) {
+                    case "NA":
                         medal = null;
                         break;
                     case "Bronze":
@@ -130,6 +134,9 @@ public class CargaDeDatos {
 
 
                 NationalOlympicCommittee temp = Repositorio.getHashNOC().getValor(Noc);
+                if(temp==null){
+                    System.out.println("fallo");
+                }
                 Athlete atleta = null;
 
                 if (hashAtleta.pertenece((int) id)) {
@@ -156,7 +163,7 @@ public class CargaDeDatos {
                         temp.sumarMedallaOro();
                     }
                 }
-                //  Athlete atleta = new Athlete(id, name, sex, heigth, weigth, team, no)
+
             }
         }
         Repositorio.setHashAtleta(hashAtleta);
