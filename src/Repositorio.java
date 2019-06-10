@@ -1,4 +1,5 @@
 import entidades.Athlete;
+import entidades.AthleteOlympicParticipation;
 import entidades.NationalOlympicCommittee;
 import entidades.RegionPorMedalla;
 import tads.hash.Hash;
@@ -8,6 +9,8 @@ import tads.hash.HashAbierto;
 public class Repositorio {
     static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez
     static HashAbierto<Athlete,Integer> hashAtleta;
+    static HashAbierto<AthleteOlympicParticipation,Athlete> hashParticip;
+
     static Heap<Integer, Athlete> medallasOro;
     static Heap<Integer, Athlete> medallasPlata;
     static Heap<Integer, Athlete> medallasBronce;
@@ -95,5 +98,13 @@ public class Repositorio {
 
     public static void setMedallasReg(Heap<Integer, RegionPorMedalla> medallasReg) {
         medallasReg = medallasReg;
+    }
+
+    public static HashAbierto<AthleteOlympicParticipation, Athlete> getHashParticip() {
+        return hashParticip;
+    }
+
+    public static void setHashParticip(HashAbierto<AthleteOlympicParticipation, Athlete> hashParticip) {
+        Repositorio.hashParticip = hashParticip;
     }
 }

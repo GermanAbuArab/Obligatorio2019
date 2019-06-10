@@ -1,7 +1,6 @@
 package entidades;
 
 public class Athlete {
-
     private long id;
     private String name;
     private SexType sex;
@@ -10,6 +9,14 @@ public class Athlete {
     private Team team;
     private NationalOlympicCommittee NatOlimpic;
     private int[] medallas;
+
+
+    public boolean equals(Athlete comp) {
+        boolean temp = false;
+        if (this.id == comp.getId()) temp = true;
+        return temp;
+    }
+
 
     public Athlete(long id, String name, SexType sex, float height, float weight, Team team, NationalOlympicCommittee natOlimpic) {
         this.id = id;
@@ -40,25 +47,24 @@ public class Athlete {
     }
 
     public int getMedallas() {
-        int cantmedallas =medallas[0]+medallas[1]+medallas[2];
+        int cantmedallas = medallas[0] + medallas[1] + medallas[2];
         return cantmedallas;
     }
 
     public int getMedallasOro() {
-        int cantmedallas =medallas[0];
+        int cantmedallas = medallas[0];
         return cantmedallas;
     }
 
     public int getMedallasPlata() {
-        int cantmedallas =medallas[1];
+        int cantmedallas = medallas[1];
         return cantmedallas;
     }
 
     public int getMedallasBronce() {
-        int cantmedallas =medallas[2];
+        int cantmedallas = medallas[2];
         return cantmedallas;
     }
-
 
 
     public long getId() {

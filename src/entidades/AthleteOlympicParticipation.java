@@ -6,22 +6,12 @@ public class AthleteOlympicParticipation {
     private Event evento;
     private OlympicGame juegoOlimpico;
 
-    public AthleteOlympicParticipation(MedalType medal, Athlete atleta, Event evento, OlympicGame juegoOlimpico) {
+    public AthleteOlympicParticipation(Athlete atleta, Event evento, OlympicGame juegoOlimpico) // todo hay que comentar que cambiamos el constructor en el informe
+     {
         this.medal = medal;
         this.atleta = atleta;
         this.evento = evento;
-        this.juegoOlimpico = juegoOlimpico;
-
-        if (medal == null) {
-        } else if (medal.equals(MedalType.GOLD)) {
-            atleta.sumarMedallaOro();
-        } else if (medal.equals(MedalType.SILVER)) {
-            atleta.sumarMedallaPlata();
-        } else if (medal.equals(MedalType.BRONZE)) {
-            atleta.sumarMedallaBronce();
-        }
-
-
+       this.juegoOlimpico = juegoOlimpico;
     }
 
     public MedalType getMedal() {

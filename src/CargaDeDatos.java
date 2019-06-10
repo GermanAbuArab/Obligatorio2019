@@ -62,6 +62,8 @@ public class CargaDeDatos {
         String line = null;
         int primeraLinea = 1;
         HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
+        HashAbierto<Athlete, Integer> hashParticip = new HashAbierto<>(130000);
+
         while (true) {
             if (x == 67723) {
                 System.out.println("hola");
@@ -114,14 +116,14 @@ public class CargaDeDatos {
 
                 x++;
                 int year = Integer.valueOf(values[9]);
-                SeasonType season;
+                SeasonType season = null;
                 if (values[10].substring(0, ((int) (values[10].length()))).equals("Summer")) {
                     season = SeasonType.SUMMER;
                 } else if (values[10].substring(0, ((int) (values[10].length()))).equals("Winter")) {
                     season = SeasonType.WINTER;
                 }
-                String city = values[11].substring(0, ((int) (values[11].length())));
-                String sport = values[12].substring(0, ((int) (values[12].length())));
+                City city = new City(values[11].substring(0, ((int) (values[11].length()))));
+                Sport sport = new Sport(values[12].substring(0, ((int) (values[12].length()))));
                 String event = values[13].substring(0, ((int) (values[13].length())));
                 MedalType medal = null;
                 switch (values[14].substring(0, ((int) (values[14].length())))) {
@@ -159,22 +161,32 @@ public class CargaDeDatos {
                     }
 
                 }
-
+                Event evento= new Event(event,sport);
+                OlympicGame juegoOlimpico = new OlympicGame(games,  year,  season, city,  evento);
+                AthleteOlympicParticipation participation= new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
                 if (medal != null) {
                     if (medal.equals(MedalType.BRONZE)) {
                         atleta.sumarMedallaBronce();
                         temp.sumarMedallaBronce();
+                        participation.setMedal(medal);
                     } else if (medal.equals(MedalType.SILVER)) {
                         atleta.sumarMedallaPlata();
                         temp.sumarMedallaPlata();
+                        participation.setMedal(medal);
                     } else if (medal.equals(MedalType.GOLD)) {
                         atleta.sumarMedallaOro();
                         temp.sumarMedallaOro();
+                        participation.setMedal(medal);
                     }
                 }
 
+
             }
+
+
         }
         Repositorio.setHashAtleta(hashAtleta);
+
+        Repositorio.setHashAtleta(hashParticip);
     }
 }
