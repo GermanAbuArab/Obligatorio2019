@@ -42,6 +42,12 @@ public class CargaDeDatos {
                 }
             }
         }
+        NationalOlympicCommittee noManLand = new NationalOlympicCommittee("NA", "Sin Region");
+        try {
+            nocs.insertar("NA", noManLand);
+        } catch (ElementoYaExistenteException e) {
+            e.printStackTrace();
+        }
         Repositorio.setHashNOC(nocs);
         NationalOlympicCommittee temp1 = Repositorio.getHashNOC().getValor("SGP");
 
@@ -52,11 +58,12 @@ public class CargaDeDatos {
             e.printStackTrace();
         }
         long x = 0;
+        long y = 0;
         String line = null;
         int primeraLinea = 1;
         HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
         while (true) {
-            if(x==67723){
+            if (x == 67723) {
                 System.out.println("hola");
             }
             try {
@@ -70,15 +77,15 @@ public class CargaDeDatos {
             } else {
                 long id;
                 if (values[0].length() == 1) {
-                    id= Long.valueOf("" + values[0].charAt(0));
-                }else{
+                    id = Long.valueOf("" + values[0].charAt(0));
+                } else {
                     id = Long.valueOf(values[0].substring(0, (int) (values[0].length())));
                 }
                 String name = values[1].substring(0, ((int) (values[1].length())));
                 SexType sex = null;
-                if ((""+values[2].charAt(0)).equals("M")) {
+                if (("" + values[2].charAt(0)).equals("M")) {
                     sex = SexType.MALE;
-                } else if ((""+values[2].charAt(0)).equals("F")) {
+                } else if (("" + values[2].charAt(0)).equals("F")) {
                     sex = SexType.FEMALE;
                 }
 //                int age;
@@ -104,7 +111,7 @@ public class CargaDeDatos {
                 String Noc = values[7].substring(0, ((int) (values[7].length())));
                 String games = values[8].substring(0, ((int) (values[8].length())));
 
-                System.out.println(x);
+
                 x++;
                 int year = Integer.valueOf(values[9]);
                 SeasonType season;
@@ -134,8 +141,10 @@ public class CargaDeDatos {
 
 
                 NationalOlympicCommittee temp = Repositorio.getHashNOC().getValor(Noc);
-                if(temp==null){
-                    System.out.println("fallo");
+                if (temp == null) {
+                    y++;
+                    System.out.println(y);
+                    temp = Repositorio.getHashNOC().getValor("NA");
                 }
                 Athlete atleta = null;
 
@@ -144,7 +153,7 @@ public class CargaDeDatos {
                 } else {
                     atleta = new Athlete(id, name, sex, heigth, weigth, team, temp);
                     try {
-                        hashAtleta.insertar((int) id,atleta);
+                        hashAtleta.insertar((int) id, atleta);
                     } catch (ElementoYaExistenteException e) {
                         e.printStackTrace();
                     }
