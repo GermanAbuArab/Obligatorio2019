@@ -1,18 +1,29 @@
 package entidades;
 
+import java.util.ArrayList;
+
 public class OlympicGame {
     private String name;
     private int year;
     private SeasonType season;
     private City ciudad;
-    private Event evento;
+    private ArrayList<Event> eventos;
 
-    public OlympicGame(String name, int year, SeasonType season, City ciudad, Event evento) {
+    public OlympicGame(String name, int year, SeasonType season, City ciudad) {
         this.name = name;
         this.year = year;
         this.season = season;
         this.ciudad = ciudad;
-        this.evento = evento;
+        this.eventos = new ArrayList<>(40);
+
+    }
+
+    public ArrayList<Event> getEventos() {
+        return eventos;
+    }
+
+    public void addEvento(Event evento){
+        this.eventos.add(evento);
     }
 
     public void setName(String name) {
@@ -31,10 +42,6 @@ public class OlympicGame {
         this.ciudad = ciudad;
     }
 
-    public void setEvento(Event evento) {
-        this.evento = evento;
-    }
-
     public String getName() {
         return name;
     }
@@ -51,7 +58,4 @@ public class OlympicGame {
         return ciudad;
     }
 
-    public Event getEvento() {
-        return evento;
-    }
 }
