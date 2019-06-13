@@ -1,7 +1,4 @@
-import entidades.Athlete;
-import entidades.AthleteOlympicParticipation;
-import entidades.NationalOlympicCommittee;
-import entidades.RegionPorMedalla;
+import entidades.*;
 import tads.hash.Hash;
 import tads.heap.Heap;
 import tads.hash.HashAbierto;
@@ -10,15 +7,21 @@ public class Repositorio {
     static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez
     static HashAbierto<Athlete,Integer> hashAtleta;
     static HashAbierto<AthleteOlympicParticipation,Athlete> hashParticip;
+    static HashAbierto<OlympicGame,String> hashGames;
 
-    static Heap<Integer, Athlete> medallasOro;
-    static Heap<Integer, Athlete> medallasPlata;
-    static Heap<Integer, Athlete> medallasBronce;
-    static Heap<Integer, Athlete> medallas;
-    static Heap<Integer, RegionPorMedalla> medallasOroReg;
-    static Heap<Integer, RegionPorMedalla> medallasPlataReg;
-    static Heap<Integer, RegionPorMedalla> medallasBronceReg;
-    static Heap<Integer, RegionPorMedalla> medallasReg;
+//    static Heap<Integer, Athlete> medallasOro;
+//    static Heap<Integer, Athlete> medallasPlata;
+//    static Heap<Integer, Athlete> medallasBronce;
+//    static Heap<Integer, Athlete> medallas;
+//    static Heap<Integer, RegionPorMedalla> medallasOroReg;
+//    static Heap<Integer, RegionPorMedalla> medallasPlataReg;
+//    static Heap<Integer, RegionPorMedalla> medallasBronceReg;
+//    static Heap<Integer, RegionPorMedalla> medallasReg;
+
+
+    public static void setHashGames(HashAbierto<OlympicGame, String> hashGames) {
+        Repositorio.hashGames = hashGames;
+    }
 
     public static HashAbierto<Athlete, Integer> getHashAtleta() {
         return hashAtleta;

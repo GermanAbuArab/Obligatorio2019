@@ -63,7 +63,7 @@ public class CargaDeDatos {
         int primeraLinea = 1;
         HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
         HashAbierto<Athlete, Integer> hashParticip = new HashAbierto<>(130000);
-
+        HashAbierto<OlympicGame, String> hashGames = new HashAbierto<>(120);
         while (true) {
             if (x == 67723) {
                 System.out.println("hola");
@@ -111,7 +111,7 @@ public class CargaDeDatos {
 
                 Team team = new Team(values[6].substring(0, ((int) (values[6].length()))));
                 String Noc = values[7].substring(0, ((int) (values[7].length())));
-                String games = values[8].substring(0, ((int) (values[8].length())));
+                String game = values[8].substring(0, ((int) (values[8].length())));
 
 
                 x++;
@@ -161,9 +161,23 @@ public class CargaDeDatos {
                     }
 
                 }
-                Event evento= new Event(event,sport);
-                OlympicGame juegoOlimpico = new OlympicGame(games,  year,  season, city,  evento);
-                AthleteOlympicParticipation participation= new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
+                Event evento = new Event(event, sport);
+                OlympicGame juegoOlimpico;
+
+                if (hashGames.pertenece(game)) {
+                    juegoOlimpico = hashGames.getValor(game);
+                } else {
+                    juegoOlimpico = new OlympicGame(game, year, season, city);
+                    try {
+                        hashGames.insertar(game, juegoOlimpico);
+                    } catch (ElementoYaExistenteException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                juegoOlimpico.addEvento(evento);
+
+                AthleteOlympicParticipation participation = new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
                 if (medal != null) {
                     if (medal.equals(MedalType.BRONZE)) {
                         atleta.sumarMedallaBronce();
@@ -183,10 +197,9 @@ public class CargaDeDatos {
 
             }
 
-
         }
         Repositorio.setHashAtleta(hashAtleta);
-
+        Repositorio.setHashGames(hashGames);
         Repositorio.setHashAtleta(hashParticip);
     }
 }

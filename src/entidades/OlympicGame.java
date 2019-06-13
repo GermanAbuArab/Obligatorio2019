@@ -23,7 +23,11 @@ public class OlympicGame {
     }
 
     public void addEvento(Event evento){
-        this.eventos.add(evento);
+        if(eventos.contains(evento)){
+
+        }else{
+            this.eventos.add(evento);
+        }
     }
 
     public void setName(String name) {
