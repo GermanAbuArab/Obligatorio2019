@@ -5,9 +5,9 @@ import tads.hash.HashAbierto;
 
 public class Repositorio {
     static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez
-    static HashAbierto<Athlete,Integer> hashAtleta;
-    static HashAbierto<AthleteOlympicParticipation,Athlete> hashParticip;
-    static HashAbierto<OlympicGame,String> hashGames;
+    static Hash<Athlete, Integer> hashAtleta;
+    static Hash<AthleteOlympicParticipation, Athlete> hashParticip;
+    static Hash<OlympicGame, String> hashGames;
 
 //    static Heap<Integer, Athlete> medallasOro;
 //    static Heap<Integer, Athlete> medallasPlata;
@@ -19,15 +19,15 @@ public class Repositorio {
 //    static Heap<Integer, RegionPorMedalla> medallasReg;
 
 
-    public static void setHashGames(HashAbierto<OlympicGame, String> hashGames) {
+    public static void setHashGames(Hash<OlympicGame, String> hashGames) {
         Repositorio.hashGames = hashGames;
     }
 
-    public static HashAbierto<Athlete, Integer> getHashAtleta() {
+    public static Hash<Athlete, Integer> getHashAtleta() {
         return hashAtleta;
     }
 
-    public static void setHashAtleta(HashAbierto<Athlete, Integer> hashAtleta) {
+    public static void setHashAtleta(Hash<Athlete, Integer> hashAtleta) {
         Repositorio.hashAtleta = hashAtleta;
     }
 
@@ -39,75 +39,76 @@ public class Repositorio {
         hashNOC = nOC;
     }
 
-    public static Heap<Integer, Athlete> getMedallasOro() {
-        return medallasOro;
-    }
-
-    public static void setMedallasOro(Heap<Integer, Athlete> medallasOro) {
-        medallasOro = medallasOro;
-    }
-
-    public static Heap<Integer, Athlete> getMedallasPlata() {
-        return medallasPlata;
-    }
-
-    public static void setMedallasPlata(Heap<Integer, Athlete> medallasPlata) {
-        medallasPlata = medallasPlata;
-    }
-
-    public static Heap<Integer, Athlete> getMedallasBronce() {
-        return medallasBronce;
-    }
-
-    public static void setMedallasBronce(Heap<Integer, Athlete> medallasBronce) {
-        medallasBronce = medallasBronce;
-    }
-
-    public static Heap<Integer, Athlete> getMedallas() {
-        return medallas;
-    }
-
-    public static void setMedallas(Heap<Integer, Athlete> medallas) {
-        medallas = medallas;
-    }
-
-    public static Heap<Integer, RegionPorMedalla> getMedallasOroReg() {
-        return medallasOroReg;
-    }
-
-    public static void setMedallasOroReg(Heap<Integer, RegionPorMedalla> medallasOroReg) {
-        medallasOroReg = medallasOroReg;
-    }
-
-    public static Heap<Integer, RegionPorMedalla> getMedallasPlataReg() {
-        return medallasPlataReg;
-    }
-
-    public static void setMedallasPlataReg(Heap<Integer, RegionPorMedalla> medallasPlataReg) {
-        medallasPlataReg = medallasPlataReg;
-    }
-
-    public static Heap<Integer, RegionPorMedalla> getMedallasBronceReg() {
-        return medallasBronceReg;
-    }
-
-    public static void setMedallasBronceReg(Heap<Integer, RegionPorMedalla> medallasBronceReg) {
-        medallasBronceReg = medallasBronceReg;
-    }
-
-    public static Heap<Integer, RegionPorMedalla> getMedallasReg() {
-        return medallasReg;
-    }
-
-    public static void setMedallasReg(Heap<Integer, RegionPorMedalla> medallasReg) {
-        medallasReg = medallasReg;
-    }
-
-    public static HashAbierto<AthleteOlympicParticipation, Athlete> getHashParticip() {
+    public static Hash<AthleteOlympicParticipation, Athlete> getHashParticip() {
         return hashParticip;
     }
 
-    public static void setHashParticip(HashAbierto<AthleteOlympicParticipation, Athlete> hashParticip) {
+    public static void setHashParticip(Hash<AthleteOlympicParticipation, Athlete> hashParticip) {
         Repositorio.hashParticip = hashParticip;
     }
+
+//    public static Heap<Integer, Athlete> getMedallasOro() {
+//        return medallasOro;
+//    }
+//
+//    public static void setMedallasOro(Heap<Integer, Athlete> medallasOro) {
+//        medallasOro = medallasOro;
+//    }
+//
+//    public static Heap<Integer, Athlete> getMedallasPlata() {
+//        return medallasPlata;
+//    }
+//
+//    public static void setMedallasPlata(Heap<Integer, Athlete> medallasPlata) {
+//        medallasPlata = medallasPlata;
+//    }
+//
+//    public static Heap<Integer, Athlete> getMedallasBronce() {
+//        return medallasBronce;
+//    }
+//
+//    public static void setMedallasBronce(Heap<Integer, Athlete> medallasBronce) {
+//        medallasBronce = medallasBronce;
+//    }
+//
+//    public static Heap<Integer, Athlete> getMedallas() {
+//        return medallas;
+//    }
+//
+//    public static void setMedallas(Heap<Integer, Athlete> medallas) {
+//        medallas = medallas;
+//    }
+//
+//    public static Heap<Integer, RegionPorMedalla> getMedallasOroReg() {
+//        return medallasOroReg;
+//    }
+//
+//    public static void setMedallasOroReg(Heap<Integer, RegionPorMedalla> medallasOroReg) {
+//        medallasOroReg = medallasOroReg;
+//    }
+//
+//    public static Heap<Integer, RegionPorMedalla> getMedallasPlataReg() {
+//        return medallasPlataReg;
+//    }
+//
+//    public static void setMedallasPlataReg(Heap<Integer, RegionPorMedalla> medallasPlataReg) {
+//        medallasPlataReg = medallasPlataReg;
+//    }
+//
+//    public static Heap<Integer, RegionPorMedalla> getMedallasBronceReg() {
+//        return medallasBronceReg;
+//    }
+//
+//    public static void setMedallasBronceReg(Heap<Integer, RegionPorMedalla> medallasBronceReg) {
+//        medallasBronceReg = medallasBronceReg;
+//    }
+//
+//    public static Heap<Integer, RegionPorMedalla> getMedallasReg() {
+//        return medallasReg;
+//    }
+
+//    public static void setMedallasReg(Heap<Integer, RegionPorMedalla> medallasReg) {
+//        medallasReg = medallasReg;
+//    }
+
 }

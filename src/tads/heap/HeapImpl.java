@@ -13,6 +13,7 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
         lastPosition=0;
     }
 
+
     public void agregar(K key, T data) {
         NodeHeap<K,T> nuevo = new NodeHeap<>(key,data);
         heap[lastPosition]=nuevo;

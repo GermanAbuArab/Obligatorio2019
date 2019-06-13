@@ -17,6 +17,10 @@ public class Hash<K, T> implements HashTable<K, T> {
         return tamanio;
     }
 
+    public NodoHash<K, T>[] getHash() {
+        return hash;
+    }
+
     public void insertar(T clave, K valor) throws ElementoYaExistenteException {
         int pos = clave.hashCode();
         pos = abs(pos % (int) tamanio);

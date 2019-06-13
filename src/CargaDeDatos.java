@@ -12,7 +12,7 @@ public class CargaDeDatos {
     static BufferedReader br;
     static BufferedReader br2;
 
-    public static void main(String[] args) {
+    public static void carga() {
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
@@ -61,9 +61,9 @@ public class CargaDeDatos {
         long y = 0;
         String line = null;
         int primeraLinea = 1;
-        HashAbierto<Athlete, Integer> hashAtleta = new HashAbierto<>(75000);
-        HashAbierto<Athlete, Integer> hashParticip = new HashAbierto<>(130000);
-        HashAbierto<OlympicGame, String> hashGames = new HashAbierto<>(120);
+        Hash<Athlete, Integer> hashAtleta = new Hash<>(75000);
+        Hash<Athlete, Integer> hashParticip = new Hash<>(130000);
+        Hash<OlympicGame, String> hashGames = new Hash<>(120);
         while (true) {
             if (x == 67723) {
                 System.out.println("hola");
