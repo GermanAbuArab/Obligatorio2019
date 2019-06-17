@@ -1,7 +1,5 @@
 import entidades.*;
 import tads.hash.Hash;
-import tads.heap.Heap;
-import tads.hash.HashAbierto;
 
 public class Repositorio {
     static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez

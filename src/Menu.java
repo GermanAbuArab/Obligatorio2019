@@ -18,10 +18,14 @@ public class Menu {
             System.out.println("0 - Terminar");
 
             choice = sc.nextLine();
+            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4")&& !choice.equals("5")) {
+                System.out.println("Operacion no valida");
+            }
             switch (choice) {
                 case "1":
                     String choice2 = null;
                     do {
+                        System.out.println("-------------[Elija Tipo De Medalla]--------------");
                         System.out.println("1 - Por medallas de oro");
                         System.out.println("2 - Por medallas de plata");
                         System.out.println("3 - Por medallas de bronce");
@@ -53,7 +57,38 @@ public class Menu {
                     } while (!choice2.equals("0"));
                     break;
                 case "2":
+                    String choice3 = null;
+                    do {
+                        System.out.println("-------------[Elija Tipo De Medalla]--------------");
+                        System.out.println("1 - Por medallas de oro");
+                        System.out.println("2 - Por medallas de plata");
+                        System.out.println("3 - Por medallas de bronce");
+                        System.out.println("4 - Por medallas en total");
+                        System.out.println("0 - Volver al Menu");
+                        choice3 = sc.nextLine();
+                        if (!choice3.equals("0") && !choice3.equals("1") && !choice3.equals("2") && !choice3.equals("3") && !choice3.equals("4")) {
+                            System.out.println("Operacion no valida");
+                        }
 
+                        switch (choice3) {
+                            case "1":
+                                Consultas.consultaDos(1);
+                                choice3 = "0";
+                                break;
+                            case "2":
+                                Consultas.consultaDos(2);
+                                choice3 = "0";
+                                break;
+                            case "3":
+                                Consultas.consultaDos(3);
+                                choice3 = "0";
+                                break;
+                            case "4":
+                                Consultas.consultaDos(4);
+                                choice3 = "0";
+                                break;
+                        }
+                    } while (!choice3.equals("0"));
                     break;
                 case "3":
 
