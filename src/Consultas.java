@@ -50,7 +50,7 @@ public class Consultas {
             }
             for(int i=0;i<10;i++){
                 Athlete athlete=medallas.obtenerYEliminar().getData();
-                System.out.println("Nombre: "+ athlete.getName()+"Medallas: "+ athlete.getMedallas()); //agregar vector de 2 ´para conseguir año max y minimo en la clase atleta
+                System.out.println("Nombre: "+ athlete.getName()+ " - Sexo: "+ athlete.getSex()+" - Medallas: "+ athlete.getMedallas()+" - Año minimo: "+ athlete.getAnioMinimo()+" - Año maximo: "+ athlete.getAnioMaximo()); //agregar vector de 2 ´para conseguir año max y minimo en la clase atleta
             }
         }
 

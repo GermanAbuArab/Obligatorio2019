@@ -9,12 +9,14 @@ public class Athlete {
     private Team team;
     private NationalOlympicCommittee NatOlimpic;
     private int[] medallas;
+    private int[] aniosMaxYMin;
 
 
     public boolean equals(Athlete comp) {
         boolean temp = false;
         if (this.id == comp.getId()) temp = true;
         return temp;
+
     }
 
 
@@ -27,10 +29,24 @@ public class Athlete {
         this.team = team;
         NatOlimpic = natOlimpic;
 
+        aniosMaxYMin = new int[2];
+        aniosMaxYMin[0] = 0;
+        aniosMaxYMin[1] = 0;
         medallas = new int[3];
         medallas[0] = 0;
         medallas[1] = 0;
         medallas[2] = 0;
+
+    }
+
+    public void cambiarAnio(int anio) {
+
+        if (aniosMaxYMin[0] > anio || aniosMaxYMin[0]==0) {
+            aniosMaxYMin[0] = anio;
+        }
+        if (aniosMaxYMin[1] < anio) {
+            aniosMaxYMin[1] = anio;
+        }
 
     }
 
@@ -64,6 +80,16 @@ public class Athlete {
     public int getMedallasBronce() {
         int cantmedallas = medallas[2];
         return cantmedallas;
+    }
+
+    public int getAnioMaximo() {
+        int temp = aniosMaxYMin[1];
+        return temp;
+    }
+
+    public int getAnioMinimo() {
+        int temp = aniosMaxYMin[0];
+        return temp;
     }
 
 
@@ -122,4 +148,7 @@ public class Athlete {
     public void setNatOlimpic(NationalOlympicCommittee natOlimpic) {
         NatOlimpic = natOlimpic;
     }
+
+
 }
+

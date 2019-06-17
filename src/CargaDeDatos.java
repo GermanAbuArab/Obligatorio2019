@@ -173,6 +173,7 @@ public class CargaDeDatos {
 
                 AthleteOlympicParticipation participation = new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
                 if (medal != null) {
+                    atleta.cambiarAnio(year);
                     if (medal.equals(MedalType.BRONZE)) {
                         atleta.sumarMedallaBronce();
                         temp.sumarMedallaBronce();
