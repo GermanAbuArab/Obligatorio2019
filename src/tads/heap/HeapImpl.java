@@ -54,9 +54,13 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K, T> {
         lastPosition = lastPosition - 1;
         int continuar = 1;
         int auxPosPadre = 0;
+        int count=0;
         int auxPosHijo1 = 2 * auxPosPadre + 1;
         int auxPosHijo2 = 2 * auxPosPadre + 2;
-        while (continuar == 1) {
+        while (continuar == 1) {count++;
+
+                if(count==7)
+                    System.out.println("hola");
             if (auxPosHijo1 > lastPosition - 1 || auxPosHijo2 > lastPosition - 1) {
                 if (auxPosHijo1 > lastPosition - 1 && auxPosHijo2 > lastPosition - 1) {
                     continuar = 0;
