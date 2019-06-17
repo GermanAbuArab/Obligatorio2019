@@ -43,13 +43,14 @@ public class Consultas {
         else if (tipo == 4) {
             HeapImpl<Integer, Athlete> medallas =new HeapImpl<>(150000,1) ;
             for (int i = 0; i < temp.length-1; i++) {
+
                 if (temp[i] != null) {
                     medallas.agregar(temp[i].getValor().getMedallas(), temp[i].getValor());
                 }
             }
             for(int i=0;i<10;i++){
                 Athlete athlete=medallas.obtenerYEliminar().getData();
-                System.out.println("Nombre: "+ athlete.getName()+""+ athlete.getMedallas()); //agregar vector de 2 ´para conseguir año max y minimo en la clase atleta
+                System.out.println("Nombre: "+ athlete.getName()+"Medallas: "+ athlete.getMedallas()); //agregar vector de 2 ´para conseguir año max y minimo en la clase atleta
             }
         }
 

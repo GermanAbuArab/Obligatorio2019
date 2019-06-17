@@ -43,9 +43,9 @@ public class Repositorio {
         return hashParticip;
     }
 
-    public static void setHashParticip(Hash<AthleteOlympicParticipation, Athlete> hashParticip) {
-        Repositorio.hashParticip = hashParticip;
-    }
+    //public static void setHashParticip(Hash<AthleteOlympicParticipation, Integer> hashParticip) {
+      //  Repositorio.hashParticip = hashParticip;
+    //}
 
 //    public static Heap<Integer, Athlete> getMedallasOro() {
 //        return medallasOro;

@@ -57,17 +57,13 @@ public class CargaDeDatos {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        long x = 0;
-        long y = 0;
         String line = null;
         int primeraLinea = 1;
         Hash<Athlete, Integer> hashAtleta = new Hash<>(75000);
-        Hash<Athlete, Integer> hashParticip = new Hash<>(130000);
+     //  Hash<AthleteOlympicParticipation, Integer> hashParticip = new Hash<>(130000);
         Hash<OlympicGame, String> hashGames = new Hash<>(120);
         while (true) {
-            if (x == 67723) {
-                System.out.println("hola");
-            }
+
             try {
                 if ((line = br.readLine()) == null) break;
             } catch (IOException e) {
@@ -114,7 +110,7 @@ public class CargaDeDatos {
                 String game = values[8].substring(0, ((int) (values[8].length())));
 
 
-                x++;
+
                 int year = Integer.valueOf(values[9]);
                 SeasonType season = null;
                 if (values[10].substring(0, ((int) (values[10].length()))).equals("Summer")) {
@@ -144,8 +140,6 @@ public class CargaDeDatos {
 
                 NationalOlympicCommittee temp = Repositorio.getHashNOC().getValor(Noc);
                 if (temp == null) {
-                    y++;
-                    System.out.println(y);
                     temp = Repositorio.getHashNOC().getValor("NA");
                 }
                 Athlete atleta = null;
@@ -200,6 +194,6 @@ public class CargaDeDatos {
         }
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
-        Repositorio.setHashAtleta(hashParticip);
+       // Repositorio.setHashParticip(hashParticip);
     }
 }

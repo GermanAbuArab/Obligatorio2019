@@ -25,7 +25,6 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
             int auxPosPadre=(auxPosHijo-1)/2;
             while(continuar==1) {
                 if(heap[auxPosHijo].getKey().compareTo(heap[auxPosPadre].getKey())==-1*tipoHeap){
-                    lastPosition++;
                     continuar=0;
                 }
                 if((heap[auxPosHijo].getKey().compareTo(heap[auxPosPadre].getKey())==1*tipoHeap)){
@@ -37,10 +36,13 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
                         auxPosPadre=(auxPosHijo-1)/2;
                     }else{
                         continuar=0;
-                        lastPosition++;
                     }
                 }
+                if((heap[auxPosHijo].getKey().compareTo(heap[auxPosPadre].getKey()))==0){
+                    continuar=0;
+                }
             }
+            lastPosition++;
         }
 
     }
@@ -83,12 +85,14 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
                     heap[auxPosHijo2]=padre;
                     auxPosPadre=auxPosHijo2;
                     auxPosHijo2=2*auxPosHijo2+2;
+                    auxPosHijo1=2*auxPosHijo2+1; //puede fallar
                 }else{
                     NodeHeap<K,T> padre = heap[auxPosPadre];
                     heap[auxPosPadre]=heap[auxPosHijo1];
                     heap[auxPosHijo1]=padre;
                     auxPosPadre=auxPosHijo1;
                     auxPosHijo1=2*auxPosHijo1+1;
+                    auxPosHijo2=2*auxPosHijo1+2; //puede fallar
                 }
             }
             else if (heap[auxPosPadre].getKey().compareTo(heap[auxPosHijo1].getKey()) == -1*tipoHeap) {
@@ -97,6 +101,7 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
                 heap[auxPosHijo1]=padre;
                 auxPosPadre=auxPosHijo1;
                 auxPosHijo1=2*auxPosHijo1+1;
+                auxPosHijo2=2*auxPosHijo1+2; //puede fallar
             }
             else if (heap[auxPosPadre].getKey().compareTo(heap[auxPosHijo2].getKey()) == -1*tipoHeap) {
                 NodeHeap<K,T> padre = heap[auxPosPadre];
@@ -104,6 +109,7 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K,T> {
                 heap[auxPosHijo2]=padre;
                 auxPosPadre=auxPosHijo2;
                 auxPosHijo2=2*auxPosHijo2+2;
+                auxPosHijo1=2*auxPosHijo2+1; //puede fallar
             }
         }
         return devolver;
