@@ -14,7 +14,7 @@ public class OlympicGame {
         this.year = year;
         this.season = season;
         this.ciudad = ciudad;
-        this.eventos = new ArrayList<>(40);
+        this.eventos = new ArrayList<Event>(40);
 
     }
 

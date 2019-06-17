@@ -60,7 +60,7 @@ public class CargaDeDatos {
         String line = null;
         int primeraLinea = 1;
         Hash<Athlete, Integer> hashAtleta = new Hash<>(75000);
-     //  Hash<AthleteOlympicParticipation, Integer> hashParticip = new Hash<>(130000);
+        Hash<AthleteOlympicParticipation, Integer> hashParticip = new Hash<>(130000);
         Hash<OlympicGame, String> hashGames = new Hash<>(120);
         while (true) {
 
@@ -108,7 +108,6 @@ public class CargaDeDatos {
                 Team team = new Team(values[6].substring(0, ((int) (values[6].length()))));
                 String Noc = values[7].substring(0, ((int) (values[7].length())));
                 String game = values[8].substring(0, ((int) (values[8].length())));
-
 
 
                 int year = Integer.valueOf(values[9]);
@@ -173,19 +172,20 @@ public class CargaDeDatos {
 
                 AthleteOlympicParticipation participation = new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
                 if (medal != null) {
-                    atleta.cambiarAnio(year);
+                    participation.setMedal(medal);
+                    atleta.cambiarAnio(year,medal);
                     if (medal.equals(MedalType.BRONZE)) {
+
                         atleta.sumarMedallaBronce();
                         temp.sumarMedallaBronce();
-                        participation.setMedal(medal);
+
                     } else if (medal.equals(MedalType.SILVER)) {
                         atleta.sumarMedallaPlata();
                         temp.sumarMedallaPlata();
-                        participation.setMedal(medal);
+
                     } else if (medal.equals(MedalType.GOLD)) {
                         atleta.sumarMedallaOro();
                         temp.sumarMedallaOro();
-                        participation.setMedal(medal);
                     }
                 }
 
@@ -195,6 +195,6 @@ public class CargaDeDatos {
         }
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
-       // Repositorio.setHashParticip(hashParticip);
+        //Repositorio.setHashParticip(hashParticip);
     }
 }

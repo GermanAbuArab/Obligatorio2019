@@ -8,7 +8,7 @@ public class Event {
         this.name = name;
         this.deporte = deporte;
     }
-    //override
+
     public boolean equals(Event e){
       boolean temp=false;
         if(this.deporte.equals(e.deporte) && this.name.equals(e.name)) temp=true;

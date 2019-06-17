@@ -57,13 +57,12 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K, T> {
         int count=0;
         int auxPosHijo1 = 2 * auxPosPadre + 1;
         int auxPosHijo2 = 2 * auxPosPadre + 2;
-        while (continuar == 1) {count++;
+        while (continuar == 1 ) {
 
-                if(count==7)
-                    System.out.println("hola");
             if (auxPosHijo1 > lastPosition - 1 || auxPosHijo2 > lastPosition - 1) {
                 if (auxPosHijo1 > lastPosition - 1 && auxPosHijo2 > lastPosition - 1) {
                     continuar = 0;
+                    break;
                 } else {
                     if (auxPosHijo1 > lastPosition - 1) {
                         auxPosHijo1 = auxPosHijo2;
@@ -86,30 +85,30 @@ public class HeapImpl<K extends Comparable, T> implements Heap<K, T> {
                     heap[auxPosPadre] = heap[auxPosHijo2];
                     heap[auxPosHijo2] = padre;
                     auxPosPadre = auxPosHijo2;
-                    auxPosHijo2 = 2 * auxPosHijo2 + 2;
-                    auxPosHijo1 = 2 * auxPosHijo2 + 1; //puede fallar
+                    auxPosHijo2 = 2 * auxPosPadre + 2;
+                    auxPosHijo1 = 2 * auxPosPadre + 1; //puede fallar
                 } else {
                     NodeHeap<K, T> padre = heap[auxPosPadre];
                     heap[auxPosPadre] = heap[auxPosHijo1];
                     heap[auxPosHijo1] = padre;
                     auxPosPadre = auxPosHijo1;
-                    auxPosHijo1 = 2 * auxPosHijo1 + 1;
-                    auxPosHijo2 = 2 * auxPosHijo1 + 2; //puede fallar
+                    auxPosHijo1 = 2 * auxPosPadre + 1;
+                    auxPosHijo2 = 2 * auxPosPadre + 2; //puede fallar
                 }
             } else if (heap[auxPosPadre].getKey().compareTo(heap[auxPosHijo1].getKey()) == -1 * tipoHeap) {
                 NodeHeap<K, T> padre = heap[auxPosPadre];
                 heap[auxPosPadre] = heap[auxPosHijo1];
                 heap[auxPosHijo1] = padre;
                 auxPosPadre = auxPosHijo1;
-                auxPosHijo1 = 2 * auxPosHijo1 + 1;
-                auxPosHijo2 = 2 * auxPosHijo1 + 2; //puede fallar
+                auxPosHijo1 = 2 * auxPosPadre + 1;
+                auxPosHijo2 = 2 * auxPosPadre + 2; //puede fallar
             } else if (heap[auxPosPadre].getKey().compareTo(heap[auxPosHijo2].getKey()) == -1 * tipoHeap) {
                 NodeHeap<K, T> padre = heap[auxPosPadre];
                 heap[auxPosPadre] = heap[auxPosHijo2];
                 heap[auxPosHijo2] = padre;
                 auxPosPadre = auxPosHijo2;
-                auxPosHijo2 = 2 * auxPosHijo2 + 2;
-                auxPosHijo1 = 2 * auxPosHijo2 + 1; //puede fallar
+                auxPosHijo2 = 2 * auxPosPadre + 2;
+                auxPosHijo1 = 2 * auxPosPadre + 1; //puede fallar
             }
         }
         return devolver;
