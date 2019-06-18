@@ -105,12 +105,11 @@ public class Menu {
 
                     break;
             }
-            System.out.println("Precione una letra y Enter para continuar");
-            sc.nextLine();
+            System.out.println("  ");
+
         }
         while (!choice.equals("0"));
         sc.close();
-
 
     }
 
