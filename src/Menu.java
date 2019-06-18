@@ -99,6 +99,7 @@ public class Menu {
                     } while (!choice3.equals("0"));
                     break;
                 case "3":
+                    Consultas.consultaTres();
 
                     break;
                 case "4":

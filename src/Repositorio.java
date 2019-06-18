@@ -9,14 +9,7 @@ public class Repositorio {
     static ArrayList<AthleteOlympicParticipation> listaParticip;
     static Hash<OlympicGame, String> hashGames;
 
-//    static Heap<Integer, Athlete> medallasOro;
-//    static Heap<Integer, Athlete> medallasPlata;
-//    static Heap<Integer, Athlete> medallasBronce;
-//    static Heap<Integer, Athlete> medallas;
-//    static Heap<Integer, RegionPorMedalla> medallasOroReg;
-//    static Heap<Integer, RegionPorMedalla> medallasPlataReg;
-//    static Heap<Integer, RegionPorMedalla> medallasBronceReg;
-//    static Heap<Integer, RegionPorMedalla> medallasReg;
+
 
 
     public static void setHashGames(Hash<OlympicGame, String> hashGames) {
@@ -45,6 +38,10 @@ public class Repositorio {
 
     public static ArrayList<AthleteOlympicParticipation> getParticip() {
         return listaParticip;
+    }
+
+    public static Hash<OlympicGame, String> getHashGames() {
+        return hashGames;
     }
 
     //public static void setHashParticip(Hash<AthleteOlympicParticipation, Integer> hashParticip) {

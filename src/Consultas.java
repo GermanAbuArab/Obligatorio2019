@@ -244,11 +244,11 @@ public class Consultas {
                             organizacion.getValor(temp.getJuegoOlimpico().getName()).getValor().add(temp.getAtlteta());
                         }
                     }
-                }else{
+                } else {
                     ArrayList<Athlete> inicial = new ArrayList<>(100000);
-                    NodoHash<ArrayList<Athlete>, Integer> nodo = new NodoHash<>(inicial,(Integer)0,false);
+                    NodoHash<ArrayList<Athlete>, Integer> nodo = new NodoHash<>(inicial, (Integer) 0, false);
                     try {
-                        organizacion.insertar(temp.getJuegoOlimpico().getName(),nodo);
+                        organizacion.insertar(temp.getJuegoOlimpico().getName(), nodo);
                     } catch (ElementoYaExistenteException e) {
                         System.out.println("falla extrema");
                     }
@@ -256,10 +256,24 @@ public class Consultas {
             }
 
         }
-        HeapImpl<Integer,String> mayorFemeninas = new HeapImpl<>(1000,1);
-//        NodoHash<String,Integer> paraHeap
-//        for(int i=0,i<)
-//        mayorFemeninas.agregar();
+        HeapImpl<Integer, String> mayorFemeninas = new HeapImpl<>(1000, 1);
+        NodoHash<NodoHash<ArrayList<Athlete>, Integer>, String>[] paraHeap = organizacion.getHash();
+        for (int i = 0; i < paraHeap.length; i++) {
+            if (paraHeap[i] != null) {
+                mayorFemeninas.agregar(paraHeap[i].getValor().getClave(), paraHeap[i].getClave());
+            }
+        }
+
+        Hash<OlympicGame, String> auxiliar = Repositorio.getHashGames();
+
+        for (int i = 0; i < 10; i++) {
+
+            NodeHeap<Integer, String> temp = mayorFemeninas.obtenerYEliminar();
+            OlympicGame temp2=auxiliar.getValor(temp.getData());
+            System.out.println("Edicion: " +temp2.getName() + " - Año: "+ temp2.getYear()+" - Cantidad de participantes femeninos:"+ temp.getKey());
+
+        }
+
     }
 }
 
