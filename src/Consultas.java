@@ -7,6 +7,7 @@ import tads.heap.HeapImpl;
 import tads.heap.NodeHeap;
 
 import javax.print.DocFlavor;
+import java.util.ArrayList;
 
 
 public class Consultas {
@@ -222,5 +223,7 @@ public class Consultas {
         }
     }
 
-    public static void consultaTres(){}
+    public static void consultaTres(){
+        ArrayList<>
+    }
 }
