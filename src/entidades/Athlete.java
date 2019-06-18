@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.ArrayList;
+
 public class Athlete {
     private long id;
     private String name;
@@ -10,6 +12,7 @@ public class Athlete {
     private NationalOlympicCommittee NatOlimpic;
     private int[] medallas;
     private int[] aniosMaxYMin;
+
 
 
     public boolean equals(Athlete comp) {

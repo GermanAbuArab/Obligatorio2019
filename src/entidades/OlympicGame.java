@@ -8,6 +8,7 @@ public class OlympicGame {
     private SeasonType season;
     private City ciudad;
     private ArrayList<Event> eventos;
+    private ArrayList<AthleteOlympicParticipation> participaciones; // TODO hay que crear el game antes que la participacion y el evento
 
     public OlympicGame(String name, int year, SeasonType season, City ciudad) {
         this.name = name;
@@ -18,6 +19,14 @@ public class OlympicGame {
 
     }
 
+    public void  agregarEvento(Event evento){
+        if(!eventos.contains(evento)) {
+            eventos.add(evento);
+        }
+        else
+        {}
+
+    }
     public ArrayList<Event> getEventos() {
         return eventos;
     }
