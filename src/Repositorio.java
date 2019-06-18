@@ -8,7 +8,7 @@ public class Repositorio {
     static Hash<Athlete, Integer> hashAtleta;
     static ArrayList<AthleteOlympicParticipation> listaParticip;
     static Hash<OlympicGame, String> hashGames;
-
+    static Hash<Event, String> hashEventos;
 
 
 
@@ -42,6 +42,18 @@ public class Repositorio {
 
     public static Hash<OlympicGame, String> getHashGames() {
         return hashGames;
+    }
+
+    public static ArrayList<AthleteOlympicParticipation> getListaParticip() {
+        return listaParticip;
+    }
+
+    public static Hash<Event, String> getHashEventos() {
+        return hashEventos;
+    }
+
+    public static void setHashEventos(Hash<Event, String> hashEventos) {
+        Repositorio.hashEventos = hashEventos;
     }
 
     //public static void setHashParticip(Hash<AthleteOlympicParticipation, Integer> hashParticip) {

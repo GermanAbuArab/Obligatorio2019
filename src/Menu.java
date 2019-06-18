@@ -1,4 +1,6 @@
+import java.util.Date;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Menu {
 
@@ -18,7 +20,7 @@ public class Menu {
             System.out.println("0 - Terminar");
 
             choice = sc.nextLine();
-            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4")&& !choice.equals("5")) {
+            if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5")) {
                 System.out.println("Operacion no valida");
             }
             switch (choice) {
@@ -103,7 +105,48 @@ public class Menu {
 
                     break;
                 case "4":
+                    String choice4 = null;
+                    do {
+                        System.out.println("-------------{Elija el sexo}--------------");
+                        System.out.println("1 - Hombre");
+                        System.out.println("2 - Mujer");
+                        System.out.println("0 - Volver al Menu");
+                        choice4 = sc.nextLine();
+                        if (!choice4.equals("0") && !choice4.equals("1") && !choice4.equals("2")) {
+                            System.out.println("Operacion no valida");
+                        }
+                        if (!choice4.equals("0")) {
+                            boolean sexo = false;
+                            if (choice4.equals("1")) {
+                                sexo = true;
+                            }
+                            Consultas.consultaCuatro(sexo);
+                            choice4 = "0";
+                        }
+                    } while (!choice4.equals("0"));
+                    break;
+                case "5":
+                    Date fecha = new Date();
+                    String choice5 = null;
+                    boolean cond = false;
+                    long min;
+                    long max;
+                    do {
+                        System.out.println("-------------{Indique el rango de años}--------------");
 
+                        System.out.println("- Año mínimo");
+                        choice5 = sc.nextLine();
+                        min = Integer.valueOf(choice5);
+                        System.out.println(" - Año máximo");
+                        choice5 = sc.nextLine();
+                        max = Integer.valueOf(choice5);
+                        if (min > max || min < 0 || max > fecha.getYear())
+                            System.out.println("Ingrese datos validos");
+                        else {
+                            cond = true;
+                        }
+                    } while (!cond);
+                    Consultas.consultaCinco(min, max);
                     break;
             }
             System.out.println("  ");

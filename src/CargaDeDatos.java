@@ -63,6 +63,7 @@ public class CargaDeDatos {
         Hash<Athlete, Integer> hashAtleta = new Hash<>(75000);
         ArrayList<AthleteOlympicParticipation> listaParticip = new ArrayList<>(1000000);
         Hash<OlympicGame, String> hashGames = new Hash<>(120);
+        Hash<Event, String> hashEventos = new Hash<>(120);
         while (true) {
 
             try {
@@ -155,7 +156,20 @@ public class CargaDeDatos {
                     }
 
                 }
-                Event evento = new Event(event, sport);
+                Event evento ;
+                if (hashEventos.pertenece(event)) {
+                    evento= hashEventos.getValor(event);
+                } else {
+                    evento= new Event(event,sport);
+                    try {
+                        hashEventos.insertar(event,evento);
+                    } catch (ElementoYaExistenteException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                new Event(event, sport);
                 OlympicGame juegoOlimpico;
 
                 if (hashGames.pertenece(game)) {
@@ -197,6 +211,7 @@ public class CargaDeDatos {
             }
 
         }
+        Repositorio.setHashEventos(hashEventos);
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
         Repositorio.setListaParticip(listaParticip);

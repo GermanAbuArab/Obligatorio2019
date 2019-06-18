@@ -269,10 +269,70 @@ public class Consultas {
         for (int i = 0; i < 10; i++) {
 
             NodeHeap<Integer, String> temp = mayorFemeninas.obtenerYEliminar();
-            OlympicGame temp2=auxiliar.getValor(temp.getData());
-            System.out.println("Edicion: " +temp2.getName() + " - Año: "+ temp2.getYear()+" - Cantidad de participantes femeninos:"+ temp.getKey());
+            OlympicGame temp2 = auxiliar.getValor(temp.getData());
+            System.out.println("Edicion: " + temp2.getName() + " - Año: " + temp2.getYear() + " - Cantidad de participantes femeninos:" + temp.getKey());
 
         }
+
+    }
+
+    public static void consultaCuatro(boolean tipo) {
+        SexType sexoAux = SexType.FEMALE;
+        if (tipo) {
+            sexoAux = SexType.MALE;
+        }
+        Hash<NodoHash<ArrayList<Athlete>, Integer>, String> organizacion = new Hash<>(1000000);
+        ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
+        for (int i = 0; i < participaciones.size(); i++) {
+            if (participaciones.get(i) == null) {
+                i = participaciones.size();
+            } else {
+                AthleteOlympicParticipation temp = participaciones.get(i);
+                if (organizacion.pertenece(temp.getEvento().getName())) {
+                    if (organizacion.getValor(temp.getEvento().getName()).getValor().contains(temp.getAtlteta())) {
+
+                    } else {
+                        if (temp.getAtlteta().getSex() == sexoAux) {
+                            Integer viejaKey = organizacion.getValor(temp.getEvento().getName()).getClave();
+                            organizacion.getValor(temp.getEvento().getName()).setClave(viejaKey + 1);
+                            organizacion.getValor(temp.getEvento().getName()).getValor().add(temp.getAtlteta());
+                        }
+                    }
+                } else {
+                    ArrayList<Athlete> inicial = new ArrayList<>(100000);
+                    NodoHash<ArrayList<Athlete>, Integer> nodo = new NodoHash<>(inicial, (Integer) 0, false);
+                    try {
+                        organizacion.insertar(temp.getEvento().getName(), nodo);
+                    } catch (ElementoYaExistenteException e) {
+                        System.out.println("falla extrema");
+                    }
+                }
+            }
+
+        }
+
+        HeapImpl<Integer, String> mayor = new HeapImpl<>(1000, 1);
+        NodoHash<NodoHash<ArrayList<Athlete>, Integer>, String>[] paraHeap = organizacion.getHash();
+
+        for (int i = 0; i < paraHeap.length; i++) {
+            if (paraHeap[i] != null) {
+                mayor.agregar(paraHeap[i].getValor().getClave(), paraHeap[i].getClave());
+            }
+        }
+
+        Hash<Event, String> auxiliar = Repositorio.getHashEventos();
+
+        for (int i = 0; i < 5; i++) {
+
+            NodeHeap<Integer, String> temp = mayor.obtenerYEliminar();
+            Event temp3 = auxiliar.getValor(temp.getData());
+            System.out.println("Competicion: " + temp3.getName() + " - Deporte: " + temp3.getDeporte().getName() + " - Sexo: " + sexoAux + " - Cantidad de participantes :" + temp.getKey());
+
+        }
+    }
+
+    public static void consultaCinco(long min, long max) {
+
 
     }
 }
