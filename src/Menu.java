@@ -38,18 +38,22 @@ public class Menu {
 
                         switch (choice2) {
                             case "1":
+                                System.out.println("-------------{Jugadores con mas medallas de oro}--------------");
                                 Consultas.consultaUno(1);
                                 choice2 = "0";
                                 break;
                             case "2":
+                                System.out.println("-------------{Jugadores con mas medallas de plata}--------------");
                                 Consultas.consultaUno(2);
                                 choice2 = "0";
                                 break;
                             case "3":
+                                System.out.println("-------------{Jugadores con mas medallas de bronce}--------------");
                                 Consultas.consultaUno(3);
                                 choice2 = "0";
                                 break;
                             case "4":
+                                System.out.println("-------------{Jugadores con mas medallas}--------------");
                                 Consultas.consultaUno(4);
                                 choice2 = "0";
                                 break;
@@ -72,18 +76,22 @@ public class Menu {
 
                         switch (choice3) {
                             case "1":
+                                System.out.println("-------------{Regiones con mas medallas de oro}--------------");
                                 Consultas.consultaDos(1);
                                 choice3 = "0";
                                 break;
                             case "2":
+                                System.out.println("-------------{Regiones con mas medallas de plata}--------------");
                                 Consultas.consultaDos(2);
                                 choice3 = "0";
                                 break;
                             case "3":
+                                System.out.println("-------------{Regiones con mas medallas de bronce}--------------");
                                 Consultas.consultaDos(3);
                                 choice3 = "0";
                                 break;
                             case "4":
+                                System.out.println("-------------{Regiones con mas medallas}--------------");
                                 Consultas.consultaDos(4);
                                 choice3 = "0";
                                 break;
@@ -97,6 +105,8 @@ public class Menu {
 
                     break;
             }
+            System.out.println("Precione una letra y Enter para continuar");
+            sc.nextLine();
         }
         while (!choice.equals("0"));
         sc.close();
