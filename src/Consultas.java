@@ -333,7 +333,24 @@ public class Consultas {
 
     public static void consultaCinco(long min, long max) {
 
+        Hash<NodoHash<ArrayList<Athlete>, Integer>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medakka
+        ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
 
+
+
+
+        for (int i = 0; i < participaciones.size(); i++) {
+            if (participaciones.get(i) == null) {
+                i = participaciones.size();
+            } else {
+                AthleteOlympicParticipation temp = participaciones.get(i);
+                if (organizacion.pertenece(temp.getAtlteta().getTeam().getName())) {
+                    if (organizacion.getValor(temp.getAtlteta().getTeam().getName()).getValor().contains(temp.getAtlteta())) {
+
+                    }
+                    }
+                }
+            }
     }
 }
 
