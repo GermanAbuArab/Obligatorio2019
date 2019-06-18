@@ -1,13 +1,16 @@
 import entidades.*;
+import tads.Queue.Nodo;
 import tads.hash.ElementoYaExistenteException;
 import tads.hash.Hash;
 import tads.hash.NoExisteElemento;
 import tads.hash.NodoHash;
+import tads.heap.Heap;
 import tads.heap.HeapImpl;
 import tads.heap.NodeHeap;
 
 import javax.print.DocFlavor;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Consultas {
@@ -223,7 +226,40 @@ public class Consultas {
         }
     }
 
-    public static void consultaTres(){
-        ArrayList<>
+    public static void consultaTres() {
+        Hash<NodoHash<ArrayList<Athlete>, Integer>, String> organizacion = new Hash<>(1000000);
+        ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
+        for (int i = 0; i < participaciones.size(); i++) {
+            if (participaciones.get(i) == null) {
+                i = participaciones.size();
+            } else {
+                AthleteOlympicParticipation temp = participaciones.get(i);
+                if (organizacion.pertenece(temp.getJuegoOlimpico().getName())) {
+                    if (organizacion.getValor(temp.getJuegoOlimpico().getName()).getValor().contains(temp.getAtlteta())) {
+
+                    } else {
+                        if (temp.getAtlteta().getSex() == SexType.FEMALE) {
+                            Integer viejaKey = organizacion.getValor(temp.getJuegoOlimpico().getName()).getClave();
+                            organizacion.getValor(temp.getJuegoOlimpico().getName()).setClave(viejaKey + 1);
+                            organizacion.getValor(temp.getJuegoOlimpico().getName()).getValor().add(temp.getAtlteta());
+                        }
+                    }
+                }else{
+                    ArrayList<Athlete> inicial = new ArrayList<>(100000);
+                    NodoHash<ArrayList<Athlete>, Integer> nodo = new NodoHash<>(inicial,(Integer)0,false);
+                    try {
+                        organizacion.insertar(temp.getJuegoOlimpico().getName(),nodo);
+                    } catch (ElementoYaExistenteException e) {
+                        System.out.println("falla extrema");
+                    }
+                }
+            }
+
+        }
+        HeapImpl<Integer,String> mayorFemeninas = new HeapImpl<>(1000,1);
+//        NodoHash<String,Integer> paraHeap
+//        for(int i=0,i<)
+//        mayorFemeninas.agregar();
     }
 }
+

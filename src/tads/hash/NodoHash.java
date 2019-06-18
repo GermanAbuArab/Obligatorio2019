@@ -19,6 +19,10 @@ public class NodoHash<K,T> {
         this.valor = valor;
     }
 
+    public void setClave(T clave) {
+        this.clave = clave;
+    }
+
     public K getValor() {
         return valor;
     }
