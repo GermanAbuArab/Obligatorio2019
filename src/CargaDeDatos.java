@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CargaDeDatos {
     static BufferedReader br;
@@ -60,7 +61,7 @@ public class CargaDeDatos {
         String line = null;
         int primeraLinea = 1;
         Hash<Athlete, Integer> hashAtleta = new Hash<>(75000);
-        Hash<AthleteOlympicParticipation, Integer> hashParticip = new Hash<>(130000);
+        ArrayList<AthleteOlympicParticipation> listaParticip = new ArrayList<>(1000000);
         Hash<OlympicGame, String> hashGames = new Hash<>(120);
         while (true) {
 
@@ -171,6 +172,9 @@ public class CargaDeDatos {
                 juegoOlimpico.addEvento(evento);
 
                 AthleteOlympicParticipation participation = new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
+
+
+
                 if (medal != null) {
                     participation.setMedal(medal);
                     atleta.cambiarAnio(year,medal);
@@ -188,13 +192,13 @@ public class CargaDeDatos {
                         temp.sumarMedallaOro();
                     }
                 }
-
+                listaParticip.add(participation);
 
             }
 
         }
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
-        //Repositorio.setHashParticip(hashParticip);
+        Repositorio.setListaParticip(listaParticip);
     }
 }

@@ -12,8 +12,8 @@ public class Athlete {
     private NationalOlympicCommittee NatOlimpic;
     private int[] medallas;
     private int[] aniosMaxYMin;
-
-
+//    private ArrayList<AthleteOlympicParticipation> participaciones; // TODO hay que crear el game antes que la participacion y el evento
+//
 
     public boolean equals(Athlete comp) {
         boolean temp = false;
@@ -46,23 +46,35 @@ public class Athlete {
 
     }
 
-    public void cambiarAnio(int anio,MedalType medalType) {
+
+//    public ArrayList<AthleteOlympicParticipation> participaciones() {
+//        return participaciones;
+//    }
+//
+//    public void addParticipacion(AthleteOlympicParticipation participation) {
+//
+//        this.participaciones.add(participation);
+//
+//    }
+
+
+    public void cambiarAnio(int anio, MedalType medalType) {
         if (medalType.equals(MedalType.BRONZE)) {
-            if (aniosMaxYMin[4] > anio || aniosMaxYMin[4]==0) {
+            if (aniosMaxYMin[4] > anio || aniosMaxYMin[4] == 0) {
                 aniosMaxYMin[4] = anio;
             }
             if (aniosMaxYMin[5] < anio) {
                 aniosMaxYMin[5] = anio;
             }
         } else if (medalType.equals(MedalType.SILVER)) {
-            if (aniosMaxYMin[2] > anio || aniosMaxYMin[2]==0) {
+            if (aniosMaxYMin[2] > anio || aniosMaxYMin[2] == 0) {
                 aniosMaxYMin[2] = anio;
             }
             if (aniosMaxYMin[3] < anio) {
                 aniosMaxYMin[3] = anio;
             }
         } else if (medalType.equals(MedalType.GOLD)) {
-            if (aniosMaxYMin[0] > anio || aniosMaxYMin[0]==0) {
+            if (aniosMaxYMin[0] > anio || aniosMaxYMin[0] == 0) {
                 aniosMaxYMin[0] = anio;
             }
             if (aniosMaxYMin[1] < anio) {
@@ -70,7 +82,6 @@ public class Athlete {
             }
 
         }
-
 
 
     }
@@ -116,6 +127,7 @@ public class Athlete {
         int temp = aniosMaxYMin[4];
         return temp;
     }
+
     public int getAnioMaximoP() {
         int temp = aniosMaxYMin[3];
         return temp;
@@ -125,6 +137,7 @@ public class Athlete {
         int temp = aniosMaxYMin[2];
         return temp;
     }
+
     public int getAnioMaximoO() {
         int temp = aniosMaxYMin[1];
         return temp;
@@ -134,24 +147,25 @@ public class Athlete {
         int temp = aniosMaxYMin[0];
         return temp;
     }
+
     public int getAnioMaximo() {
         int temp = aniosMaxYMin[1];
-        if(temp<aniosMaxYMin[3]){
-            temp=aniosMaxYMin[3];
+        if (temp < aniosMaxYMin[3]) {
+            temp = aniosMaxYMin[3];
         }
-        if(temp<aniosMaxYMin[5]){
-            temp=aniosMaxYMin[5];
+        if (temp < aniosMaxYMin[5]) {
+            temp = aniosMaxYMin[5];
         }
         return temp;
     }
 
     public int getAnioMinimo() {
         int temp = aniosMaxYMin[0];
-        if(temp>aniosMaxYMin[2]){
-            temp=aniosMaxYMin[2];
+        if (temp > aniosMaxYMin[2]) {
+            temp = aniosMaxYMin[2];
         }
-        if(temp>aniosMaxYMin[4]){
-            temp=aniosMaxYMin[4];
+        if (temp > aniosMaxYMin[4]) {
+            temp = aniosMaxYMin[4];
         }
         return temp;
     }

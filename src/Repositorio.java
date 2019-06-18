@@ -1,10 +1,12 @@
 import entidades.*;
 import tads.hash.Hash;
 
+import java.util.ArrayList;
+
 public class Repositorio {
     static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez
     static Hash<Athlete, Integer> hashAtleta;
-    static Hash<AthleteOlympicParticipation, Athlete> hashParticip;
+    static ArrayList<AthleteOlympicParticipation> listaParticip;
     static Hash<OlympicGame, String> hashGames;
 
 //    static Heap<Integer, Athlete> medallasOro;
@@ -19,6 +21,10 @@ public class Repositorio {
 
     public static void setHashGames(Hash<OlympicGame, String> hashGames) {
         Repositorio.hashGames = hashGames;
+    }
+
+    public static void setListaParticip(ArrayList<AthleteOlympicParticipation> listaParticip) {
+        Repositorio.listaParticip = listaParticip;
     }
 
     public static Hash<Athlete, Integer> getHashAtleta() {
@@ -37,8 +43,8 @@ public class Repositorio {
         hashNOC = nOC;
     }
 
-    public static Hash<AthleteOlympicParticipation, Athlete> getHashParticip() {
-        return hashParticip;
+    public static ArrayList<AthleteOlympicParticipation> getParticip() {
+        return listaParticip;
     }
 
     //public static void setHashParticip(Hash<AthleteOlympicParticipation, Integer> hashParticip) {
