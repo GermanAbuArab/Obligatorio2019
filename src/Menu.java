@@ -1,10 +1,8 @@
-import java.util.Date;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Menu {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         CargaDeDatos.carga();
         String choice;
