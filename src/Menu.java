@@ -7,7 +7,7 @@ public class Menu {
     public static void main(String args[]) {
 
         CargaDeDatos.carga();
-        String choice = null;
+        String choice;
         Scanner sc = new Scanner(System.in);
 
         do {
@@ -25,7 +25,7 @@ public class Menu {
             }
             switch (choice) {
                 case "1":
-                    String choice2 = null;
+                    String choice2;
                     do {
                         System.out.println("-------------[Elija Tipo De Medalla]--------------");
                         System.out.println("1 - Por medallas de oro");
@@ -63,7 +63,7 @@ public class Menu {
                     } while (!choice2.equals("0"));
                     break;
                 case "2":
-                    String choice3 = null;
+                    String choice3;
                     do {
                         System.out.println("-------------[Elija Tipo De Medalla]--------------");
                         System.out.println("1 - Por medallas de oro");
@@ -104,7 +104,7 @@ public class Menu {
                     Consultas.consultaTres();
                     break;
                 case "4":
-                    String choice4 = null;
+                    String choice4;
                     do {
                         System.out.println("-------------{Elija el sexo}--------------");
                         System.out.println("1 - Hombre");
@@ -113,31 +113,40 @@ public class Menu {
                         choice4 = sc.nextLine();
                         if (!choice4.equals("0") && !choice4.equals("1") && !choice4.equals("2")) {
                             System.out.println("Operacion no valida");
-                        }
-                        if (!choice4.equals("0")) {
-                            boolean sexo = false;
-                            if (choice4.equals("1")) {
-                                sexo = true;
+                        } else {
+                            if (!choice4.equals("0")) {
+                                boolean sexo = false;
+                                if (choice4.equals("1")) {
+                                    sexo = true;
+                                }
+                                Consultas.consultaCuatro(sexo);
+                                choice4 = "0";
                             }
-                            Consultas.consultaCuatro(sexo);
-                            choice4 = "0";
                         }
                     } while (!choice4.equals("0"));
                     break;
                 case "5":
-                    String choice5 = null;
+                    String choice5;
                     boolean cond = false;
-                    long min;
-                    long max;
+                    long min=0;
+                    long max=0;
+                    boolean condDePasada =true;
                     do {
                         System.out.println("-------------{Indique el rango de años}--------------");
                         System.out.println("- Año mínimo");
                         choice5 = sc.nextLine();
-                        min = Integer.valueOf(choice5);
+                        try {
+                            min = Long.valueOf(choice5);
+                        } catch (java.lang.NumberFormatException e) {
+                            condDePasada = false;
+                        }
                         System.out.println(" - Año máximo");
                         choice5 = sc.nextLine();
-                        max = Integer.valueOf(choice5);
-                        if (min > max || min < 0 || max > 2019)
+                 try{       max = Long.valueOf(choice5);
+                    } catch (java.lang.NumberFormatException e) {
+                    condDePasada = false;
+                }
+                        if (min > max || min < 0 || max > 2019 || !condDePasada)
                             System.out.println("Ingrese datos validos");
                         else {
                             cond = true;

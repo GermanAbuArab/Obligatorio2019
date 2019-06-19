@@ -1,19 +1,17 @@
 import entidades.*;
 import tads.hash.ElementoYaExistenteException;
 import tads.hash.Hash;
-import tads.hash.HashAbierto;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CargaDeDatos {
-    static BufferedReader br;
-    static BufferedReader br2;
+class CargaDeDatos {
+    private static BufferedReader br;
+    private static BufferedReader br2;
 
-    public static void carga() {
+    static void carga() {
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
@@ -29,6 +27,7 @@ public class CargaDeDatos {
                 e.printStackTrace();
             }
 
+            assert line2 != null;
             String[] values = line2.split(",");
             if (primeraLinea2 == 1) {
                 primeraLinea2 = 0;
@@ -39,7 +38,7 @@ public class CargaDeDatos {
                 try {
                     nocs.insertar(noc1, pais);
                 } catch (ElementoYaExistenteException e) {
-                    e.printStackTrace(); // nunca va a pasar porque no se repiten los noc
+                    System.out.println("Si esto aparece , arde roma");// nunca va a pasar porque no se repiten los noc
                 }
             }
         }
@@ -50,7 +49,6 @@ public class CargaDeDatos {
             e.printStackTrace();
         }
         Repositorio.setHashNOC(nocs);
-        NationalOlympicCommittee temp1 = Repositorio.getHashNOC().getValor("SGP");
 
 
         try {
@@ -143,7 +141,7 @@ public class CargaDeDatos {
                 if (temp == null) {
                     temp = Repositorio.getHashNOC().getValor("NA");
                 }
-                Athlete atleta = null;
+                Athlete atleta ;
 
                 if (hashAtleta.pertenece((int) id)) {
                     atleta = hashAtleta.getValor((int) id);
