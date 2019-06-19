@@ -10,7 +10,18 @@ class CargaDeDatos {
     private static BufferedReader br2;
 
     static void carga() {
-        Writer o = new PrintWriter(System.out("Cargando datos."));
+       // Tute no me toques estas lineas que el jueves lo arreglo
+      // System.out.println("Cargando Datos.");
+       // System.out.flush();
+       // System.out.println("Cargando Datos..");
+       // System.out.print("\033[H\033[2J");
+       // System.out.flush();
+       // System.out.println("Cargando Datos...");
+       // System.out.print("\033[H\033[2J");
+       // System.out.flush();
+
+
+
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
@@ -213,5 +224,7 @@ class CargaDeDatos {
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
         Repositorio.setListaParticip(listaParticip);
+        System.out.println("Datos Cargados");
+
     }
 }
