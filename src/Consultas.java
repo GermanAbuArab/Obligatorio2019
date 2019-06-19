@@ -333,7 +333,7 @@ public class Consultas {
 
     public static void consultaCinco(long min, long max) {
 
-        Hash<NodoHash<ArrayList<Athlete>, Float>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medakka
+        Hash<NodoHash<ArrayList<Athlete>, Float[]>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medalla
         ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
 
 
@@ -342,28 +342,65 @@ public class Consultas {
                 i = participaciones.size();
             } else {
                 AthleteOlympicParticipation temp = participaciones.get(i);
-                if (organizacion.pertenece(temp.getAtlteta().getTeam().getName())) {
-                    if (organizacion.getValor(temp.getAtlteta().getTeam().getName()).getValor().contains(temp.getAtlteta())) {
-
-                    } else {
-                        Team equipo = temp.getAtlteta().getTeam();
-                        ArrayList<Athlete> listaAtleta = new ArrayList<>(1000000);
-                        listaAtleta.add(temp.getAtlteta());
-                        NodoHash<ArrayList<Athlete>, Float> nodo2 = new NodoHash<>(listaAtleta, (float) temp.getAtlteta().getMedallas(), false);
+                if (temp.getJuegoOlimpico().getYear() > min && temp.getJuegoOlimpico().getYear() < max) {
+                    if (organizacion.pertenece(temp.getAtlteta().getTeam().getName())) { //existe equipo
+                        if (organizacion.getValor(temp.getAtlteta().getTeam().getName()).getValor().contains(temp.getAtlteta()) &&
+                                temp.getMedal() != null) { //si tiene al atleta y tiene medalla
+                            Float medallas = organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[1]; //pos 1 es medallas
+                            organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[1] = medallas + 1;
+                        } else { //no tiene al atleta
+                            Athlete aAgregar = temp.getAtlteta();
+                            organizacion.getValor(temp.getAtlteta().getTeam().getName()).getValor().add(aAgregar);
+                            Float cantAtletas = organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[0];
+                            organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[0] = cantAtletas + 1;
+                            if (temp.getMedal() != null) { //pero tiene medalla
+                                Float medallas = organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[1];
+                                organizacion.getValor(temp.getAtlteta().getTeam().getName()).getClave()[1] = medallas + 1;
+                            }
+                        }
+                    } else {  //no existe equipo
+                        ArrayList<Athlete> laLista = new ArrayList<>();
+                        laLista.add(temp.getAtlteta());
+                        Float[] elVector = new Float[2];
+                        elVector[0]= 1f;
+                        if(temp.getMedal()!=null){
+                            elVector[1]=1f;
+                        }else{
+                            elVector[1]=0f;
+                        }
+                        NodoHash<ArrayList<Athlete>, Float[]> laData = new NodoHash<>(laLista,elVector,false);
                         try {
-                            organizacion.insertar(equipo.getName(), nodo2);
-                        } catch (ElementoYaExistenteException e) {
-                            System.out.println("Falla total");
+                            organizacion.insertar(temp.getAtlteta().getTeam().getName(),laData);
+                        } catch (ElementoYaExistenteException e){
+                            System.out.println("falla total");
                         }
 
                     }
-                } else {
-                    Team equipo=organizacion.getValor().getAtlteta().getTeam();
-
-
-
                 }
             }
+        }
+
+        HeapImpl<Float,NodoHash<String,Float[]>> paraDevolver = new HeapImpl<>(10000000,1);
+        NodoHash<NodoHash<ArrayList<Athlete>, Float[]>, String>[] paraHeap = organizacion.getHash();
+
+        for (int i = 0; i < paraHeap.length; i++) {
+            if (paraHeap[i] != null) {
+                Float[] paraNodo =new Float[2];
+                paraNodo[0]= paraHeap[i].getValor().getClave()[0];
+                paraNodo[1]= paraHeap[i].getValor().getClave()[1];
+                NodoHash<String,Float[]> nodo = new NodoHash<>(paraHeap[i].getClave(),paraNodo,false);
+                paraDevolver.agregar(paraHeap[i].getValor().getClave()[1]/paraHeap[i].getValor().getClave()[0], nodo);
+            }
+        }
+
+        for (int i = 0; i < 5; i++) {
+
+            NodeHeap<Float,NodoHash<String,Float[]>> temp = paraDevolver.obtenerYEliminar();
+            String equipo = temp.getData().getValor();
+            Float cantComp = temp.getData().getClave()[0];
+            Float cantMed = temp.getData().getClave()[1];
+            System.out.println("Equippo: " + equipo + " - Cantidad de competidores: " + cantComp + " - Cantidad de medallas: " + cantMed);
+
         }
     }
 }
