@@ -1,10 +1,8 @@
 import entidades.*;
 import tads.hash.ElementoYaExistenteException;
 import tads.hash.Hash;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 
 class CargaDeDatos {
@@ -12,6 +10,7 @@ class CargaDeDatos {
     private static BufferedReader br2;
 
     static void carga() {
+        Writer o = new PrintWriter(System.out("Cargando datos."));
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
@@ -29,6 +28,7 @@ class CargaDeDatos {
 
             assert line2 != null;
             String[] values = line2.split(",");
+            if(values.length != 15)  values = line2.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
             if (primeraLinea2 == 1) {
                 primeraLinea2 = 0;
             } else {

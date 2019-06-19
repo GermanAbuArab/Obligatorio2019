@@ -1,16 +1,11 @@
 import entidades.*;
-import tads.Queue.Nodo;
 import tads.hash.ElementoYaExistenteException;
 import tads.hash.Hash;
 import tads.hash.NoExisteElemento;
 import tads.hash.NodoHash;
-import tads.heap.Heap;
 import tads.heap.HeapImpl;
 import tads.heap.NodeHeap;
-
-import javax.print.DocFlavor;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 class Consultas {

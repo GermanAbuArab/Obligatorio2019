@@ -65,6 +65,7 @@ public class Menu {
                 case "2":
                     String choice3;
                     do {
+
                         System.out.println("-------------[Elija Tipo De Medalla]--------------");
                         System.out.println("1 - Por medallas de oro");
                         System.out.println("2 - Por medallas de plata");
@@ -128,24 +129,25 @@ public class Menu {
                 case "5":
                     String choice5;
                     boolean cond = false;
-                    long min=0;
-                    long max=0;
-                    boolean condDePasada =true;
+                    long min = 0;
+                    long max = 0;
+                    boolean condDePasada = true;
                     do {
                         System.out.println("-------------{Indique el rango de años}--------------");
                         System.out.println("- Año mínimo");
                         choice5 = sc.nextLine();
                         try {
-                            min = Long.valueOf(choice5);
+                            min = Integer.valueOf(choice5);
                         } catch (java.lang.NumberFormatException e) {
                             condDePasada = false;
                         }
                         System.out.println(" - Año máximo");
                         choice5 = sc.nextLine();
-                 try{       max = Long.valueOf(choice5);
-                    } catch (java.lang.NumberFormatException e) {
-                    condDePasada = false;
-                }
+                        try {
+                            max = Integer.valueOf(choice5);
+                        } catch (java.lang.NumberFormatException e) {
+                            condDePasada = false;
+                        }
                         if (min > max || min < 0 || max > 2019 || !condDePasada)
                             System.out.println("Ingrese datos validos");
                         else {
