@@ -399,7 +399,7 @@ public class Consultas {
             String equipo = temp.getData().getValor();
             Float cantComp = temp.getData().getClave()[0];
             Float cantMed = temp.getData().getClave()[1];
-            System.out.println("Equippo: " + equipo + " - Cantidad de competidores: " + cantComp + " - Cantidad de medallas: " + cantMed);
+            System.out.println("Equipo: " + equipo + " - Cantidad de competidores: " + cantComp + " - Cantidad de medallas: " + cantMed);
 
         }
     }
