@@ -16,11 +16,10 @@ class CargaDeDatos {
        // System.out.println("Cargando Datos..");
        // System.out.print("\033[H\033[2J");
        // System.out.flush();
-       // System.out.println("Cargando Datos...");
+        System.out.println("Cargando Datos...");
        // System.out.print("\033[H\033[2J");
        // System.out.flush();
 
-        int count=0;
 
 
         try {
@@ -97,7 +96,7 @@ class CargaDeDatos {
 
                 if (values[2].substring(1, ((int) (values[2].length()-1))).equals("M")) {
                     sex = SexType.MALE;
-                } else if (values[2].equals("F")) {
+                } else if (values[2].substring(1, ((int) (values[2].length()-1))).equals("F")) {
                     sex = SexType.FEMALE;
                 }
 //                int age;
@@ -221,8 +220,7 @@ class CargaDeDatos {
                 listaParticip.add(participation);
 
             }
-            count++;
-            System.out.println(count);
+
         }
         Repositorio.setHashEventos(hashEventos);
         Repositorio.setHashAtleta(hashAtleta);
