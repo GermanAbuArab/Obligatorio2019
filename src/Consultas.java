@@ -333,10 +333,8 @@ public class Consultas {
 
     public static void consultaCinco(long min, long max) {
 
-        Hash<NodoHash<ArrayList<Athlete>, Integer>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medakka
+        Hash<NodoHash<ArrayList<Athlete>, Float>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medakka
         ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
-
-
 
 
         for (int i = 0; i < participaciones.size(); i++) {
@@ -347,10 +345,26 @@ public class Consultas {
                 if (organizacion.pertenece(temp.getAtlteta().getTeam().getName())) {
                     if (organizacion.getValor(temp.getAtlteta().getTeam().getName()).getValor().contains(temp.getAtlteta())) {
 
+                    } else {
+                        Team equipo = temp.getAtlteta().getTeam();
+                        ArrayList<Athlete> listaAtleta = new ArrayList<>(1000000);
+                        listaAtleta.add(temp.getAtlteta());
+                        NodoHash<ArrayList<Athlete>, Float> nodo2 = new NodoHash<>(listaAtleta, (float) temp.getAtlteta().getMedallas(), false);
+                        try {
+                            organizacion.insertar(equipo.getName(), nodo2);
+                        } catch (ElementoYaExistenteException e) {
+                            System.out.println("Falla total");
+                        }
+
                     }
-                    }
+                } else {
+                    Team equipo=organizacion.getValor().getAtlteta().getTeam();
+
+
+
                 }
             }
+        }
     }
 }
 

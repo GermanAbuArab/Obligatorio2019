@@ -102,7 +102,6 @@ public class Menu {
                     break;
                 case "3":
                     Consultas.consultaTres();
-
                     break;
                 case "4":
                     String choice4 = null;
@@ -126,21 +125,19 @@ public class Menu {
                     } while (!choice4.equals("0"));
                     break;
                 case "5":
-                    Date fecha = new Date();
                     String choice5 = null;
                     boolean cond = false;
                     long min;
                     long max;
                     do {
                         System.out.println("-------------{Indique el rango de años}--------------");
-
                         System.out.println("- Año mínimo");
                         choice5 = sc.nextLine();
                         min = Integer.valueOf(choice5);
                         System.out.println(" - Año máximo");
                         choice5 = sc.nextLine();
                         max = Integer.valueOf(choice5);
-                        if (min > max || min < 0 || max > fecha.getYear())
+                        if (min > max || min < 0 || max > 2019)
                             System.out.println("Ingrese datos validos");
                         else {
                             cond = true;
