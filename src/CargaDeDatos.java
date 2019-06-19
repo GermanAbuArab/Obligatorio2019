@@ -20,6 +20,7 @@ class CargaDeDatos {
        // System.out.print("\033[H\033[2J");
        // System.out.flush();
 
+        int count=0;
 
 
         try {
@@ -81,6 +82,7 @@ class CargaDeDatos {
                 e.printStackTrace();
             }
             String[] values = line.split(",");
+            if(values.length != 15)  values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
             if (primeraLinea == 1) {
                 primeraLinea = 0;
             } else {
@@ -88,13 +90,14 @@ class CargaDeDatos {
                 if (values[0].length() == 1) {
                     id = Long.valueOf("" + values[0].charAt(0));
                 } else {
-                    id = Long.valueOf(values[0].substring(0, (int) (values[0].length())));
+                    id = Long.valueOf(values[0].substring(1, (int) (values[0].length()-1)));
                 }
-                String name = values[1].substring(0, ((int) (values[1].length())));
+                String name = values[1].substring(1, ((int) (values[1].length()-1)));
                 SexType sex = null;
-                if (("" + values[2].charAt(0)).equals("M")) {
+
+                if (values[2].substring(1, ((int) (values[2].length()-1))).equals("M")) {
                     sex = SexType.MALE;
-                } else if (("" + values[2].charAt(0)).equals("F")) {
+                } else if (values[2].equals("F")) {
                     sex = SexType.FEMALE;
                 }
 //                int age;
@@ -116,23 +119,23 @@ class CargaDeDatos {
                     weigth = Float.valueOf(values[5]);
                 }
 
-                Team team = new Team(values[6].substring(0, ((int) (values[6].length()))));
-                String Noc = values[7].substring(0, ((int) (values[7].length())));
-                String game = values[8].substring(0, ((int) (values[8].length())));
+                Team team = new Team(values[6].substring(1, ((int) (values[6].length()-1))));
+                String Noc = values[7].substring(1, ((int) (values[7].length()-1)));
+                String game = values[8].substring(1, ((int) (values[8].length()-1)));
 
 
                 int year = Integer.valueOf(values[9]);
                 SeasonType season = null;
-                if (values[10].substring(0, ((int) (values[10].length()))).equals("Summer")) {
+                if (values[10].substring(1, ((int) (values[10].length()-1))).equals("Summer")) {
                     season = SeasonType.SUMMER;
-                } else if (values[10].substring(0, ((int) (values[10].length()))).equals("Winter")) {
+                } else if (values[10].substring(1, ((int) (values[10].length()-1))).equals("Winter")) {
                     season = SeasonType.WINTER;
                 }
-                City city = new City(values[11].substring(0, ((int) (values[11].length()))));
-                Sport sport = new Sport(values[12].substring(0, ((int) (values[12].length()))));
-                String event = values[13].substring(0, ((int) (values[13].length())));
+                City city = new City(values[11].substring(1, ((int) (values[11].length()-1))));
+                Sport sport = new Sport(values[12].substring(1, ((int) (values[12].length()-1))));
+                String event = values[13].substring(1, ((int) (values[13].length()-1)));
                 MedalType medal = null;
-                switch (values[14].substring(0, ((int) (values[14].length())))) {
+                switch (values[14].substring(1, ((int) (values[14].length()-1)))) {
                     case "NA":
                         medal = null;
                         break;
@@ -218,7 +221,8 @@ class CargaDeDatos {
                 listaParticip.add(participation);
 
             }
-
+            count++;
+            System.out.println(count);
         }
         Repositorio.setHashEventos(hashEventos);
         Repositorio.setHashAtleta(hashAtleta);
