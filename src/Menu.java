@@ -78,22 +78,22 @@ public class Menu {
                         switch (choice3) {
                             case "1":
                                 System.out.println("-------------{Regiones con mas medallas de oro}--------------");
-                                Consultas.consultaDos(1);
+                                Consultas.consultaDos2(1);
                                 choice3 = "0";
                                 break;
                             case "2":
                                 System.out.println("-------------{Regiones con mas medallas de plata}--------------");
-                                Consultas.consultaDos(2);
+                                Consultas.consultaDos2(2);
                                 choice3 = "0";
                                 break;
                             case "3":
                                 System.out.println("-------------{Regiones con mas medallas de bronce}--------------");
-                                Consultas.consultaDos(3);
+                                Consultas.consultaDos2(3);
                                 choice3 = "0";
                                 break;
                             case "4":
                                 System.out.println("-------------{Regiones con mas medallas}--------------");
-                                Consultas.consultaDos(4);
+                                Consultas.consultaDos2(4);
                                 choice3 = "0";
                                 break;
                         }
