@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 class Consultas {
 
-
     static void consultaUno(int tipo) {
         NodoHash<Athlete, Integer>[] temp = Repositorio.getHashAtleta().getHash();
         if (tipo == 1) {
@@ -69,152 +68,104 @@ class Consultas {
 
     }
 
-    static void consultaDos(int tipo) {
+    static void consultaDos2(int tipo) {
+        HeapImpl<Integer, String> medallasPlata = new HeapImpl<>(330, 1);
 
-        Hash<Integer, String> hashMedOro = new Hash<>(330);
-        Hash<Integer, String> hashMedPlata = new Hash<>(330);
-        Hash<Integer, String> hashMedBronce = new Hash<>(330);
-        Hash<Integer, String> hashMedTotal = new Hash<>(330);
-        NodoHash<NationalOlympicCommittee, String>[] hashNOC = Repositorio.getHashNOC().getHash();
-        NodoHash<Integer, String>[] temp1 = hashMedBronce.getHash();
-        NodoHash<Integer, String>[] temp2 = hashMedPlata.getHash();
-        NodoHash<Integer, String>[] temp3 = hashMedOro.getHash();
-        NodoHash<Integer, String>[] temp4 = hashMedTotal.getHash();
-        for (NodoHash<NationalOlympicCommittee, String> nationalOlympicCommitteeStringNodoHash : hashNOC) {
-            if (nationalOlympicCommitteeStringNodoHash != null) {
+        HeapImpl<Integer, String> medallasBronce = new HeapImpl<>(330, 1);
+        HeapImpl<Integer, String> medallasTotal = new HeapImpl<>(330, 1);
+        HeapImpl<Integer, String> medallasOro = new HeapImpl<>(330, 1);
 
-                if (!hashMedBronce.pertenece(nationalOlympicCommitteeStringNodoHash.getValor().getRegion())) {
+        Hash<NodoHash<ArrayList<Athlete>, Integer[]>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medalla
+        ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
+
+        for (int i = 0; i < participaciones.size(); i++) { // En esta parte guardamos llos medallas por regiones y tenemos la cant de medallas
+            if (participaciones.get(i) == null) {
+                i = participaciones.size();
+            } else {
+                AthleteOlympicParticipation temp = participaciones.get(i);
+                if (!organizacion.pertenece(temp.getAtlteta().getNatOlimpic().getRegion())) { // si no existe la region la creo
+                    ArrayList<Athlete> laLista = new ArrayList<>();
+                    Integer[] elVector = new Integer[3];
+                    elVector[0] = 0;
+                    elVector[1] = 0;
+                    elVector[2] = 0;
+                    NodoHash<ArrayList<Athlete>, Integer[]> laData = new NodoHash<>(laLista, elVector, false);
                     try {
-                        hashMedBronce.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), nationalOlympicCommitteeStringNodoHash.getValor().getMedallasBronce());
+                        organizacion.insertar(temp.getAtlteta().getNatOlimpic().getRegion(), laData);
                     } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                } else {
-                    Integer cantBronce = hashMedBronce.getValor(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    cantBronce = cantBronce + nationalOlympicCommitteeStringNodoHash.getValor().getMedallasBronce();
-                    try {
-                        hashMedBronce.borrar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    } catch (NoExisteElemento noExisteElemento) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                    try {
-                        hashMedBronce.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), cantBronce);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
+                        System.out.println("Falla total");
                     }
                 }
 
-                if (!hashMedPlata.pertenece(nationalOlympicCommitteeStringNodoHash.getValor().getRegion())) {
-                    try {
-                        hashMedPlata.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), nationalOlympicCommitteeStringNodoHash.getValor().getMedallasPlata());
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                } else {
-                    Integer cantPlata = hashMedPlata.getValor(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    cantPlata = cantPlata + nationalOlympicCommitteeStringNodoHash.getValor().getMedallasPlata();
-                    try {
-                        hashMedPlata.borrar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    } catch (NoExisteElemento noExisteElemento) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                    try {
-                        hashMedPlata.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), cantPlata);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
+                if (temp.getMedal() != null) {
+                    switch (temp.getMedal()) {
+                        case BRONZE:
+                            Integer[] clavevieja = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
+                            clavevieja[2]++;
+                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja);
+                            break;
+                        case SILVER:
+                            Integer[] clavevieja2 = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
+                            clavevieja2[1]++;
+                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja2);
+                            break;
+                        case GOLD:
+                            Integer[] clavevieja3 = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
+                            clavevieja3[0]++;
+                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja3);
+                            break;
+
                     }
                 }
+            }
+        }
+        NodoHash<NodoHash<ArrayList<Athlete>, Integer[]>, String>[] paraHeap = organizacion.getHash();
+        for (NodoHash<NodoHash<ArrayList<Athlete>, Integer[]>, String> nodoHashStringNodoHash : paraHeap) {
+            if (nodoHashStringNodoHash != null) {
+                Integer[] paraNodo = new Integer[3];
 
-                if (!hashMedOro.pertenece(nationalOlympicCommitteeStringNodoHash.getValor().getRegion())) {
-                    try {
-                        hashMedOro.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), nationalOlympicCommitteeStringNodoHash.getValor().getMedallasOro());
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                } else {
-                    Integer cantOro = hashMedOro.getValor(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    cantOro = cantOro + nationalOlympicCommitteeStringNodoHash.getValor().getMedallasOro();
-                    try {
-                        hashMedOro.borrar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    } catch (NoExisteElemento noExisteElemento) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                    try {
-                        hashMedOro.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), cantOro);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                }
-                if (!hashMedTotal.pertenece(nationalOlympicCommitteeStringNodoHash.getValor().getRegion())) {
-                    try {
-                        int medallasTotales = nationalOlympicCommitteeStringNodoHash.getValor().getMedallasBronce() + nationalOlympicCommitteeStringNodoHash.getValor().getMedallasPlata() + nationalOlympicCommitteeStringNodoHash.getValor().getMedallasOro();
-                        hashMedTotal.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), medallasTotales);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                } else {
-                    Integer cantMedallas = hashMedTotal.getValor(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    cantMedallas = cantMedallas + nationalOlympicCommitteeStringNodoHash.getValor().getMedallas();
-                    try {
-                        hashMedTotal.borrar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion());
-                    } catch (NoExisteElemento noExisteElemento) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                    try {
-                        hashMedTotal.insertar(nationalOlympicCommitteeStringNodoHash.getValor().getRegion(), cantMedallas);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Esto no deberia de pasar");
-                    }
-                }
-
-
+                paraNodo[0] = nodoHashStringNodoHash.getValor().getClave()[0];
+                paraNodo[1] = nodoHashStringNodoHash.getValor().getClave()[1];
+                paraNodo[2] = nodoHashStringNodoHash.getValor().getClave()[2];
+                Integer concatenacion = paraNodo[0] + paraNodo[1] + paraNodo[2];
+                medallasBronce.agregar(paraNodo[2], nodoHashStringNodoHash.getClave());
+                medallasPlata.agregar(paraNodo[1], nodoHashStringNodoHash.getClave());
+                medallasOro.agregar(paraNodo[0], nodoHashStringNodoHash.getClave());
+                medallasTotal.agregar(concatenacion, nodoHashStringNodoHash.getClave());
             }
         }
 
-        if (tipo == 1) {
 
-            HeapImpl<Integer, String> medallasOro = new HeapImpl<>(330, 1);
-            for (NodoHash<Integer, String> integerStringNodoHash : temp3) {
-                if (integerStringNodoHash != null) {
-                    medallasOro.agregar(integerStringNodoHash.getValor(), integerStringNodoHash.getClave());
-                }
-            }
+        if (tipo == 1)
+
+        {
             for (int i = 0; i < 10; i++) {
                 NodeHeap<Integer, String> regionConMedalla = medallasOro.obtenerYEliminar();
                 System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
             }
-        } else if (tipo == 2) {
+        } else if (tipo == 2)
 
-            HeapImpl<Integer, String> medallasPlata = new HeapImpl<>(330, 1);
-            for (NodoHash<Integer, String> integerStringNodoHash : temp2) {
-                if (integerStringNodoHash != null) {
-                    medallasPlata.agregar(integerStringNodoHash.getValor(), integerStringNodoHash.getClave());
-                }
-            }
+        {
+
+
             for (int i = 0; i < 10; i++) {
                 NodeHeap<Integer, String> regionConMedalla = medallasPlata.obtenerYEliminar();
                 System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
             }
-        } else if (tipo == 3) {
+        } else if (tipo == 3)
 
-            HeapImpl<Integer, String> medallasBronce = new HeapImpl<>(330, 1);
-            for (NodoHash<Integer, String> integerStringNodoHash : temp1) {
-                if (integerStringNodoHash != null) {
-                    medallasBronce.agregar(integerStringNodoHash.getValor(), integerStringNodoHash.getClave());
-                }
-            }
+        {
+
+
             for (int i = 0; i < 10; i++) {
                 NodeHeap<Integer, String> regionConMedalla = medallasBronce.obtenerYEliminar();
                 System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
             }
-        } else if (tipo == 4) {
+        } else if (tipo == 4)
 
-            HeapImpl<Integer, String> medallasTotal = new HeapImpl<>(330, 1);
-            for (NodoHash<Integer, String> integerStringNodoHash : temp4) {
-                if (integerStringNodoHash != null) {
-                    medallasTotal.agregar(integerStringNodoHash.getValor(), integerStringNodoHash.getClave());
-                }
-            }
+        {
+
+
             for (int i = 0; i < 10; i++) {
                 NodeHeap<Integer, String> regionConMedalla = medallasTotal.obtenerYEliminar();
                 System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
@@ -398,110 +349,5 @@ class Consultas {
         }
     }
 
-
-    static void consultaDos2(int tipo) {
-        HeapImpl<Integer, String> medallasPlata = new HeapImpl<>(330, 1);
-
-        HeapImpl<Integer, String> medallasBronce = new HeapImpl<>(330, 1);
-        HeapImpl<Integer, String> medallasTotal = new HeapImpl<>(330, 1);
-        HeapImpl<Integer, String> medallasOro = new HeapImpl<>(330, 1);
-
-        Hash<NodoHash<ArrayList<Athlete>, Integer[]>, String> organizacion = new Hash<>(1000000); // la calve va a ser cantidad de los atreltas del equipio dividio la cantidad de medalla
-        ArrayList<AthleteOlympicParticipation> participaciones = Repositorio.getParticip();
-
-        for (int i = 0; i < participaciones.size(); i++) { // En esta parte guardamos llos medallas por regiones y tenemos la cant de medallas
-            if (participaciones.get(i) == null) {
-                i = participaciones.size();
-            } else {
-                AthleteOlympicParticipation temp = participaciones.get(i);
-                if (!organizacion.pertenece(temp.getAtlteta().getNatOlimpic().getRegion())) { // si no existe la region la creo
-                    ArrayList<Athlete> laLista = new ArrayList<>();
-                    Integer[] elVector = new Integer[3];
-                    elVector[0] = 0;
-                    elVector[1] = 0;
-                    elVector[2] = 0;
-                    NodoHash<ArrayList<Athlete>, Integer[]> laData = new NodoHash<>(laLista, elVector, false);
-                    try {
-                        organizacion.insertar(temp.getAtlteta().getNatOlimpic().getRegion(), laData);
-                    } catch (ElementoYaExistenteException e) {
-                        System.out.println("Falla total");
-                    }
-                }
-
-                if (temp.getMedal() != null) {
-                    switch (temp.getMedal()) {
-                        case BRONZE:
-                            Integer[] clavevieja = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
-                            clavevieja[2]++;
-                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja);
-                            break;
-                        case SILVER:
-                            Integer[] clavevieja2 = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
-                            clavevieja2[1]++;
-                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja2);
-                            break;
-                        case GOLD:
-                            Integer[] clavevieja3 = organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).getClave();
-                            clavevieja3[0]++;
-                            organizacion.getValor(temp.getAtlteta().getNatOlimpic().getRegion()).setClave(clavevieja3);
-                            break;
-
-                    }
-                }
-            }
-        }
-        NodoHash<NodoHash<ArrayList<Athlete>, Integer[]>, String>[] paraHeap = organizacion.getHash();
-        for (NodoHash<NodoHash<ArrayList<Athlete>, Integer[]>, String> nodoHashStringNodoHash : paraHeap) {
-            if (nodoHashStringNodoHash != null) {
-                Integer[] paraNodo = new Integer[3];
-
-                paraNodo[0] = nodoHashStringNodoHash.getValor().getClave()[0];
-                paraNodo[1] = nodoHashStringNodoHash.getValor().getClave()[1];
-                paraNodo[2] = nodoHashStringNodoHash.getValor().getClave()[2];
-                Integer concatenacion = paraNodo[0] + paraNodo[1] + paraNodo[2];
-                medallasBronce.agregar(paraNodo[2], nodoHashStringNodoHash.getClave());
-                medallasPlata.agregar(paraNodo[1], nodoHashStringNodoHash.getClave());
-                medallasOro.agregar(paraNodo[0], nodoHashStringNodoHash.getClave());
-                medallasTotal.agregar(concatenacion,nodoHashStringNodoHash.getClave());
-            }
-        }
-
-
-        if (tipo == 1)
-
-        {
-            for (int i = 0; i < 10; i++) {
-                NodeHeap<Integer, String> regionConMedalla = medallasOro.obtenerYEliminar();
-                System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
-            }
-        } else if (tipo == 2)
-
-        {
-
-
-            for (int i = 0; i < 10; i++) {
-                NodeHeap<Integer, String> regionConMedalla = medallasPlata.obtenerYEliminar();
-                System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
-            }
-        } else if (tipo == 3)
-
-        {
-
-
-            for (int i = 0; i < 10; i++) {
-                NodeHeap<Integer, String> regionConMedalla = medallasBronce.obtenerYEliminar();
-                System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
-            }
-        } else if (tipo == 4)
-
-        {
-
-
-            for (int i = 0; i < 10; i++) {
-                NodeHeap<Integer, String> regionConMedalla = medallasTotal.obtenerYEliminar();
-                System.out.println("Region: " + regionConMedalla.getData() + " - Cantidad de medallas: " + regionConMedalla.getKey());
-            }
-        }
-    }
 }
 

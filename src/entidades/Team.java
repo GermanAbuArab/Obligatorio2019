@@ -1,7 +1,7 @@
 package entidades;
 
 public class Team {
-    private  String name;
+    private String name;
 
     public Team(String name) {
         this.name = name;

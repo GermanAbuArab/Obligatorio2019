@@ -18,22 +18,14 @@ public class OlympicGame {
 
     }
 
-    public void  agregarEvento(Event evento){
-        if(!eventos.contains(evento)) {
-            eventos.add(evento);
-        }
-        else
-        {}
-
-    }
     public ArrayList<Event> getEventos() {
         return eventos;
     }
 
-    public void addEvento(Event evento){
-        if(eventos.contains(evento)){
+    public void addEvento(Event evento) {
+        if (eventos.contains(evento)) {
 
-        }else{
+        } else {
             this.eventos.add(evento);
         }
     }

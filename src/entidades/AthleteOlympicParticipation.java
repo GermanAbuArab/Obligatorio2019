@@ -6,12 +6,11 @@ public class AthleteOlympicParticipation {
     private Event evento;
     private OlympicGame juegoOlimpico;
 
-    public AthleteOlympicParticipation(Athlete atleta, Event evento, OlympicGame juegoOlimpico) // todo hay que comentar que cambiamos el constructor en el informe
-     {
+    public AthleteOlympicParticipation(Athlete atleta, Event evento, OlympicGame juegoOlimpico) {
         this.medal = medal;
         this.atleta = atleta;
         this.evento = evento;
-       this.juegoOlimpico = juegoOlimpico;
+        this.juegoOlimpico = juegoOlimpico;
     }
 
     public MedalType getMedal() {

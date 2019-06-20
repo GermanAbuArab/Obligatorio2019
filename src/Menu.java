@@ -156,6 +156,8 @@ public class Menu {
                     break;
             }
             System.out.println("  ");
+            System.gc();
+
 
         }
         while (!choice.equals("0"));

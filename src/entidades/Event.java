@@ -9,10 +9,10 @@ public class Event {
         this.deporte = deporte;
     }
 
-    public boolean equals(Event e){
-      boolean temp=false;
-        if(this.deporte.equals(e.deporte) && this.name.equals(e.name)) temp=true;
-    return temp;
+    public boolean equals(Event e) {
+        boolean temp = false;
+        if (this.deporte.equals(e.deporte) && this.name.equals(e.name)) temp = true;
+        return temp;
     }
 
     public void setName(String name) {

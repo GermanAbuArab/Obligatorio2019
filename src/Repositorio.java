@@ -6,10 +6,9 @@ import java.util.ArrayList;
 class Repositorio {
     private static Hash<NationalOlympicCommittee, String> hashNOC; //la key y la data estan al revez
     private static Hash<Athlete, Integer> hashAtleta;
-   private static ArrayList<AthleteOlympicParticipation> listaParticip;
+    private static ArrayList<AthleteOlympicParticipation> listaParticip;
     private static Hash<OlympicGame, String> hashGames;
-   private static Hash<Event, String> hashEventos;
-
+    private static Hash<Event, String> hashEventos;
 
 
     static void setHashGames(Hash<OlympicGame, String> hashGames) {
@@ -44,7 +43,6 @@ class Repositorio {
         return hashGames;
     }
 
-
     static Hash<Event, String> getHashEventos() {
         return hashEventos;
     }
@@ -52,6 +50,5 @@ class Repositorio {
     static void setHashEventos(Hash<Event, String> hashEventos) {
         Repositorio.hashEventos = hashEventos;
     }
-
 
 }

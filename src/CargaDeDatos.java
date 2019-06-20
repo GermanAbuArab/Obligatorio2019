@@ -10,17 +10,8 @@ class CargaDeDatos {
     private static BufferedReader br2;
 
     static void carga() {
-       // Tute no me toques estas lineas que el jueves lo arreglo
-      // System.out.println("Cargando Datos.");
-       // System.out.flush();
-       // System.out.println("Cargando Datos..");
-       // System.out.print("\033[H\033[2J");
-       // System.out.flush();
+
         System.out.println("Cargando Datos...");
-       // System.out.print("\033[H\033[2J");
-       // System.out.flush();
-
-
 
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
@@ -39,7 +30,7 @@ class CargaDeDatos {
 
             assert line2 != null;
             String[] values = line2.split(",");
-            if(values.length != 15)  values = line2.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            if (values.length != 15) values = line2.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
             if (primeraLinea2 == 1) {
                 primeraLinea2 = 0;
             } else {
@@ -82,7 +73,7 @@ class CargaDeDatos {
             }
             assert line != null;
             String[] values = line.split(",");
-            if(values.length != 15)  values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            if (values.length != 15) values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
             if (primeraLinea == 1) {
                 primeraLinea = 0;
             } else {
@@ -90,22 +81,17 @@ class CargaDeDatos {
                 if (values[0].length() == 1) {
                     id = Long.valueOf("" + values[0].charAt(0));
                 } else {
-                    id = Long.valueOf(values[0].substring(1, values[0].length()-1));
+                    id = Long.valueOf(values[0].substring(1, values[0].length() - 1));
                 }
-                String name = values[1].substring(1, values[1].length()-1);
+                String name = values[1].substring(1, values[1].length() - 1);
                 SexType sex = null;
 
-                if (values[2].substring(1, values[2].length()-1).equals("M")) {
+                if (values[2].substring(1, values[2].length() - 1).equals("M")) {
                     sex = SexType.MALE;
-                } else if (values[2].substring(1, values[2].length()-1).equals("F")) {
+                } else if (values[2].substring(1, values[2].length() - 1).equals("F")) {
                     sex = SexType.FEMALE;
                 }
-//                int age;
-//                if (values[3].equals("NA")) {
-//                    age = 0;
-//                } else {
-//                    age = Integer.valueOf(values[3]);
-//                }
+
                 float heigth;
                 if (values[4].equals("NA")) {
                     heigth = 0;
@@ -119,23 +105,23 @@ class CargaDeDatos {
                     weigth = Float.valueOf(values[5]);
                 }
 
-                Team team = new Team(values[6].substring(1, values[6].length()-1));
-                String Noc = values[7].substring(1, values[7].length()-1);
-                String game = values[8].substring(1, values[8].length()-1);
+                Team team = new Team(values[6].substring(1, values[6].length() - 1));
+                String Noc = values[7].substring(1, values[7].length() - 1);
+                String game = values[8].substring(1, values[8].length() - 1);
 
 
                 int year = Integer.valueOf(values[9]);
                 SeasonType season = null;
-                if (values[10].substring(1, values[10].length()-1).equals("Summer")) {
+                if (values[10].substring(1, values[10].length() - 1).equals("Summer")) {
                     season = SeasonType.SUMMER;
-                } else if (values[10].substring(1, values[10].length()-1).equals("Winter")) {
+                } else if (values[10].substring(1, values[10].length() - 1).equals("Winter")) {
                     season = SeasonType.WINTER;
                 }
-                City city = new City(values[11].substring(1, values[11].length()-1));
-                Sport sport = new Sport(values[12].substring(1, values[12].length()-1));
-                String event = values[13].substring(1, values[13].length()-1);
+                City city = new City(values[11].substring(1, values[11].length() - 1));
+                Sport sport = new Sport(values[12].substring(1, values[12].length() - 1));
+                String event = values[13].substring(1, values[13].length() - 1);
                 MedalType medal = null;
-                switch (values[14].substring(1, values[14].length()-1)) {
+                switch (values[14].substring(1, values[14].length() - 1)) {
                     case "NA":
                         medal = null;
                         break;
@@ -155,7 +141,7 @@ class CargaDeDatos {
                 if (temp == null) {
                     temp = Repositorio.getHashNOC().getValor("NA");
                 }
-                Athlete atleta ;
+                Athlete atleta;
 
                 if (hashAtleta.pertenece((int) id)) {
                     atleta = hashAtleta.getValor((int) id);
@@ -168,13 +154,13 @@ class CargaDeDatos {
                     }
 
                 }
-                Event evento ;
+                Event evento;
                 if (hashEventos.pertenece(event)) {
-                    evento= hashEventos.getValor(event);
+                    evento = hashEventos.getValor(event);
                 } else {
-                    evento= new Event(event,sport);
+                    evento = new Event(event, sport);
                     try {
-                        hashEventos.insertar(event,evento);
+                        hashEventos.insertar(event, evento);
                     } catch (ElementoYaExistenteException e) {
                         e.printStackTrace();
                     }
@@ -199,23 +185,15 @@ class CargaDeDatos {
 
                 AthleteOlympicParticipation participation = new AthleteOlympicParticipation(atleta, evento, juegoOlimpico);
 
-
-
                 if (medal != null) {
                     participation.setMedal(medal);
-                    atleta.cambiarAnio(year,medal);
+                    atleta.cambiarAnio(year, medal);
                     if (medal.equals(MedalType.BRONZE)) {
-
                         atleta.sumarMedallaBronce();
-                        temp.sumarMedallaBronce();
-
                     } else if (medal.equals(MedalType.SILVER)) {
                         atleta.sumarMedallaPlata();
-                        temp.sumarMedallaPlata();
-
                     } else if (medal.equals(MedalType.GOLD)) {
                         atleta.sumarMedallaOro();
-                        temp.sumarMedallaOro();
                     }
                 }
                 listaParticip.add(participation);

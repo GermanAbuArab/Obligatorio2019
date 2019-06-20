@@ -45,18 +45,6 @@ public class Athlete {
 
     }
 
-
-//    public ArrayList<AthleteOlympicParticipation> participaciones() {
-//        return participaciones;
-//    }
-//
-//    public void addParticipacion(AthleteOlympicParticipation participation) {
-//
-//        this.participaciones.add(participation);
-//
-//    }
-
-
     public void cambiarAnio(int anio, MedalType medalType) {
         if (medalType.equals(MedalType.BRONZE)) {
             if (aniosMaxYMin[4] > anio || aniosMaxYMin[4] == 0) {
