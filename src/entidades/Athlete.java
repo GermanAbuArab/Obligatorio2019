@@ -1,6 +1,6 @@
 package entidades;
 
-import java.util.ArrayList;
+
 
 public class Athlete {
     private long id;
@@ -12,8 +12,7 @@ public class Athlete {
     private NationalOlympicCommittee NatOlimpic;
     private int[] medallas;
     private int[] aniosMaxYMin;
-//    private ArrayList<AthleteOlympicParticipation> participaciones; // TODO hay que crear el game antes que la participacion y el evento
-//
+
 
     public boolean equals(Athlete comp) {
         boolean temp = false;
