@@ -7,6 +7,8 @@ public class Menu {
 
         CargaDeDatos.carga();
 
+        long tiempoInicial;
+        long tiempoFinal;
 
         String choice;
         Scanner sc = new Scanner(System.in);
@@ -19,6 +21,7 @@ public class Menu {
             System.out.println("4 - Indicar las 5 competiciones donde se presentan la mayor cantidad de atletas de cierto sexo. Si es femenino o masculino se debe solicitar como dato de entrada");
             System.out.println("5 - Indicar los 5 equipos mas efectivos entre un rango de años (especificadas al ejecutar el reporte)");
             System.out.println("0 - Terminar");
+
 
             choice = sc.nextLine();
             if (!choice.equals("0") && !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5")) {
@@ -42,22 +45,34 @@ public class Menu {
                         switch (choice2) {
                             case "1":
                                 System.out.println("-------------{Jugadores con mas medallas de oro}--------------");
+                                tiempoInicial = System.currentTimeMillis();
                                 Consultas.consultaUno(1);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice2 = "0";
                                 break;
                             case "2":
                                 System.out.println("-------------{Jugadores con mas medallas de plata}--------------");
+                                tiempoInicial = System.currentTimeMillis();
                                 Consultas.consultaUno(2);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice2 = "0";
                                 break;
                             case "3":
                                 System.out.println("-------------{Jugadores con mas medallas de bronce}--------------");
+                                tiempoInicial = System.currentTimeMillis();
                                 Consultas.consultaUno(3);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice2 = "0";
                                 break;
                             case "4":
                                 System.out.println("-------------{Jugadores con mas medallas}--------------");
+                                tiempoInicial = System.currentTimeMillis();
                                 Consultas.consultaUno(4);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice2 = "0";
                                 break;
                         }
@@ -81,29 +96,44 @@ public class Menu {
                         switch (choice3) {
                             case "1":
                                 System.out.println("-------------{Regiones con mas medallas de oro}--------------");
-                                Consultas.consultaDos2(1);
+                                tiempoInicial = System.currentTimeMillis();
+                                Consultas.consultaDos(1);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice3 = "0";
                                 break;
                             case "2":
                                 System.out.println("-------------{Regiones con mas medallas de plata}--------------");
-                                Consultas.consultaDos2(2);
+                                tiempoInicial = System.currentTimeMillis();
+                                Consultas.consultaDos(2);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice3 = "0";
                                 break;
                             case "3":
                                 System.out.println("-------------{Regiones con mas medallas de bronce}--------------");
-                                Consultas.consultaDos2(3);
+                                tiempoInicial = System.currentTimeMillis();
+                                Consultas.consultaDos(3);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice3 = "0";
                                 break;
                             case "4":
                                 System.out.println("-------------{Regiones con mas medallas}--------------");
-                                Consultas.consultaDos2(4);
+                                tiempoInicial = System.currentTimeMillis();
+                                Consultas.consultaDos(4);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice3 = "0";
                                 break;
                         }
                     } while (!choice3.equals("0"));
                     break;
                 case "3":
+                    tiempoInicial = System.currentTimeMillis();
                     Consultas.consultaTres();
+                    tiempoFinal = System.currentTimeMillis();
+                    System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                     break;
                 case "4":
                     String choice4;
@@ -121,7 +151,10 @@ public class Menu {
                                 if (choice4.equals("1")) {
                                     sexo = true;
                                 }
+                                tiempoInicial = System.currentTimeMillis();
                                 Consultas.consultaCuatro(sexo);
+                                tiempoFinal = System.currentTimeMillis();
+                                System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                                 choice4 = "0";
                             }
                         }
@@ -155,7 +188,10 @@ public class Menu {
                             cond = true;
                         }
                     } while (!cond);
+                    tiempoInicial = System.currentTimeMillis();
                     Consultas.consultaCinco(min, max);
+                    tiempoFinal = System.currentTimeMillis();
+                    System.out.println((tiempoFinal - tiempoInicial) / 1000.0 + " segundo en devolver");
                     break;
             }
             System.out.println("  ");

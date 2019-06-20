@@ -68,7 +68,7 @@ class Consultas {
 
     }
 
-    static void consultaDos2(int tipo) {
+    static void consultaDos(int tipo) {
         HeapImpl<Integer, String> medallasPlata = new HeapImpl<>(330, 1);
 
         HeapImpl<Integer, String> medallasBronce = new HeapImpl<>(330, 1);
