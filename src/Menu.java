@@ -4,7 +4,10 @@ public class Menu {
 
     public static void menu() {
 
+
         CargaDeDatos.carga();
+
+
         String choice;
         Scanner sc = new Scanner(System.in);
 

@@ -13,6 +13,7 @@ class CargaDeDatos {
 
         System.out.println("Cargando Datos...");
 
+        long tiempoInicial=System.currentTimeMillis();
         try {
             br2 = new BufferedReader(new FileReader("noc_regions.csv"));
         } catch (FileNotFoundException e) {
@@ -201,11 +202,13 @@ class CargaDeDatos {
             }
 
         }
+        long tiempoFinal=System.currentTimeMillis();
         Repositorio.setHashEventos(hashEventos);
         Repositorio.setHashAtleta(hashAtleta);
         Repositorio.setHashGames(hashGames);
         Repositorio.setListaParticip(listaParticip);
         System.out.println("Datos Cargados");
-
+        float tiempo = tiempoFinal-tiempoInicial;
+        System.out.println(((tiempo)/1000)+ " segundos en cargar");
     }
 }
